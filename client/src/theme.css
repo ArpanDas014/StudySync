@@ -1,0 +1,271 @@
+/* THEME SYSTEM */
+:root, [data-theme="light"] {
+  /* Core Colors */
+  --theme-bg: #F9FAFB;
+  --theme-surface: rgba(255, 255, 255, 0.75);
+  --theme-surface-opaque: #FFFFFF;
+  --theme-border: rgba(229, 231, 235, 0.8);
+  --theme-border-strong: #E5E7EB;
+  --theme-text-primary: #111827;
+  --theme-text-secondary: #6B7280;
+  
+  /* Glassmorphism */
+  --theme-glass-blur: 16px;
+  --theme-glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.025), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --theme-glass-hover-shadow: 0 12px 28px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 1);
+  
+  /* Inputs */
+  --theme-input-bg: rgba(249, 250, 251, 0.6);
+  --theme-input-focus: #FFFFFF;
+  
+  /* Accents mapped from existing */
+  --ink: #111827;
+  --secondary: #6B7280;
+  --canvas: #F9FAFB;
+  --surface: #FFFFFF;
+  --paper: #FFFFFF;
+  --border: #E5E7EB;
+  --line: #E5E7EB;
+  --muted: #6B7280;
+
+  --ambient-blur-1: rgba(16, 185, 129, 0.04);
+  --ambient-blur-2: rgba(124, 58, 237, 0.04);
+  --sidebar-bg: rgba(255, 255, 255, 0.85);
+  --nav-hover: rgba(243, 244, 246, 0.8);
+  
+  /* Misc */
+  --theme-chart-grid: #F3F4F6;
+  --theme-pro-banner-bg: linear-gradient(135deg, rgba(236, 253, 245, 0.9) 0%, rgba(209, 250, 229, 0.7) 100%);
+  --theme-pro-banner-border: rgba(255,255,255,0.6);
+  
+  --timer-bg: #111827;
+  --timer-text: #FFFFFF;
+}
+
+[data-theme="dark"] {
+  /* Core Colors */
+  --theme-bg: #0B0F19;
+  --theme-surface: rgba(30, 41, 59, 0.7);
+  --theme-surface-opaque: #1E293B;
+  --theme-border: rgba(51, 65, 85, 0.6);
+  --theme-border-strong: #334155;
+  --theme-text-primary: #F8FAFC;
+  --theme-text-secondary: #94A3B8;
+  
+  /* Glassmorphism */
+  --theme-glass-blur: 16px;
+  --theme-glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --theme-glass-hover-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  
+  /* Inputs */
+  --theme-input-bg: rgba(15, 23, 42, 0.6);
+  --theme-input-focus: #0F172A;
+  
+  /* Accents mapped from existing */
+  --ink: #F8FAFC;
+  --secondary: #94A3B8;
+  --canvas: #0B0F19;
+  --surface: #1E293B;
+  --paper: #1E293B;
+  --border: #334155;
+  --line: #334155;
+  --muted: #94A3B8;
+
+  --ambient-blur-1: rgba(16, 185, 129, 0.08);
+  --ambient-blur-2: rgba(124, 58, 237, 0.08);
+  --sidebar-bg: rgba(15, 23, 42, 0.85);
+  --nav-hover: rgba(51, 65, 85, 0.5);
+
+  /* Misc */
+  --theme-chart-grid: #334155;
+  --theme-pro-banner-bg: linear-gradient(135deg, rgba(6, 78, 59, 0.8) 0%, rgba(2, 44, 34, 0.6) 100%);
+  --theme-pro-banner-border: rgba(16, 185, 129, 0.2);
+  
+  --timer-bg: #1E293B;
+  --timer-text: #F8FAFC;
+}
+
+/* Base Application */
+body {
+  background-color: var(--theme-bg) !important;
+  color: var(--theme-text-primary) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* OVERRIDES */
+.dashboard-mockup-wrapper, 
+.quiz-wrapper, 
+.planner-wrapper,
+.main-content {
+  background: var(--theme-bg) !important;
+}
+
+.dashboard-mockup-wrapper::before,
+.quiz-wrapper::before,
+.planner-wrapper::before,
+.main-content::before {
+  background: radial-gradient(circle, var(--ambient-blur-1) 0%, transparent 70%) !important;
+}
+.dashboard-mockup-wrapper::after,
+.quiz-wrapper::after,
+.planner-wrapper::after,
+.main-content::after {
+  background: radial-gradient(circle, var(--ambient-blur-2) 0%, transparent 70%) !important;
+}
+
+.mockup-card, 
+.mockup-widget-card,
+.quiz-card, 
+.qm-card,
+.planner-card,
+.uc-card,
+.task-card,
+.stat-card,
+.progress-card,
+.schedule-card,
+.calendar-card,
+.summary-card,
+.activity-card,
+.mockup-top-search-area,
+.quiz-top-bar,
+.planner-header,
+.planner-control-bar {
+  background: var(--theme-surface) !important;
+  border-color: var(--theme-border) !important;
+  box-shadow: var(--theme-glass-shadow) !important;
+  color: var(--theme-text-primary);
+}
+
+.mockup-sidebar {
+  background: var(--sidebar-bg) !important;
+  border-color: var(--theme-border) !important;
+}
+
+.qm-card:hover,
+.uc-card:hover,
+.task-card:hover,
+.topic-card:hover,
+.mockup-class-card:hover,
+.stat-card:hover,
+.activity-card:hover {
+  box-shadow: var(--theme-glass-hover-shadow) !important;
+}
+
+h1, h2, h3, h4, h5, h6, strong, b {
+  color: var(--theme-text-primary) !important;
+}
+
+p, span, small {
+  color: inherit;
+}
+
+.mockup-nav-link {
+  color: var(--theme-text-secondary) !important;
+}
+.mockup-nav-link:hover {
+  background: var(--nav-hover) !important;
+}
+.mockup-nav-link.active {
+  color: var(--theme-text-primary) !important;
+}
+
+.mockup-search-container,
+.planner-search,
+.soft-input {
+  background: var(--theme-input-bg) !important;
+  border-color: var(--theme-border) !important;
+  color: var(--theme-text-primary) !important;
+}
+
+.mockup-search-container:focus-within,
+.planner-search:focus-within,
+.soft-input:focus {
+  background: var(--theme-input-focus) !important;
+}
+.mockup-search-container input, .planner-search input {
+  color: var(--theme-text-primary) !important;
+}
+.mockup-search-container input::placeholder, .planner-search input::placeholder {
+  color: var(--theme-text-secondary) !important;
+}
+
+.pro-tip-banner,
+.hero-banner {
+  background: var(--theme-pro-banner-bg) !important;
+  border-color: var(--theme-pro-banner-border) !important;
+}
+
+/* Theme Toggle styles */
+.theme-toggle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-toggle-track {
+  width: 48px;
+  height: 26px;
+  border-radius: 999px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  transition: background 0.3s;
+}
+.theme-toggle-track.light {
+  background: #E5E7EB;
+}
+.theme-toggle-track.dark {
+  background: #374151;
+}
+.theme-toggle-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.theme-toggle-track.light .theme-toggle-thumb {
+  transform: translateX(0);
+}
+.theme-toggle-track.dark .theme-toggle-thumb {
+  transform: translateX(20px);
+  background: #1F2937;
+}
+
+/* Fixes for dark mode specific text */
+[data-theme="dark"] .widget-streak-count strong,
+[data-theme="dark"] .quote-text,
+[data-theme="dark"] .task-title,
+[data-theme="dark"] .calendar-date {
+  color: var(--theme-text-primary) !important;
+}
+[data-theme="dark"] .quote-author,
+[data-theme="dark"] .task-time {
+  color: var(--theme-text-secondary) !important;
+}
+[data-theme="dark"] .mockup-logo-text .logo-title {
+  color: #FFF !important;
+}
+[data-theme="dark"] .focus-timer-card {
+  background: var(--timer-bg) !important;
+  color: var(--timer-text) !important;
+}
+[data-theme="dark"] .timer-display {
+  color: var(--timer-text) !important;
+}
+
+/* Ensure smooth transitions for theme changes */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease !important;
+}
+/* except elements that need fast interaction or layout transforms */
+.mockup-nav-link, button, .theme-toggle-thumb, .fill, .task-bar-fill, .progress-bar-fill {
+  transition: all 0.2s ease !important;
+}

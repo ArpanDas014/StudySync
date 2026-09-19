@@ -1,0 +1,739 @@
+.dashboard-mockup-wrapper {
+  background-color: #F3F4F6;
+  min-height: 100vh;
+  width: 100%;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1F2937;
+  padding-bottom: 40px;
+}
+
+/* TOP SEARCH AREA */
+.mockup-top-search-area {
+  background: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.mockup-search-container {
+  display: flex;
+  align-items: center;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  padding: 8px 16px;
+  width: 500px;
+  max-width: 100%;
+  gap: 12px;
+}
+
+.mockup-search-container input {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.mockup-cmd-k {
+  background: #F3F4F6;
+  color: #6B7280;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #E5E7EB;
+  font-weight: 500;
+}
+
+.mockup-header-actions {
+  position: absolute;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mockup-bell-btn {
+  background: none;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mockup-bell-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #EF4444;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: bold;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.mockup-avatar-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.mockup-avatar {
+  background: #10B981;
+  color: white;
+  font-weight: bold;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+/* PILL NAVIGATION */
+.mockup-pill-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 24px 0;
+  flex-wrap: wrap;
+}
+
+.mockup-subject-row {
+  padding-top: 16px;
+  padding-bottom: 24px;
+}
+
+.mockup-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: white;
+  color: #4B5563;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: all 0.2s;
+}
+
+.mockup-pill:hover {
+  background: #F9FAFB;
+}
+
+.active-domain {
+  background: #10B981 !important;
+  color: white !important;
+}
+
+.active-subject {
+  background: #10B981 !important;
+  color: white !important;
+}
+
+.inactive-subject {
+  box-shadow: none;
+  background: white;
+}
+
+.mockup-search-subject {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 999px;
+  padding: 8px 16px;
+  gap: 8px;
+}
+
+.mockup-search-subject input {
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+  width: 120px;
+}
+
+/* MAIN CONTENT */
+.mockup-main-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* HERO CARD */
+.mockup-hero-card {
+  background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mockup-hero-content {
+  max-width: 500px;
+  z-index: 2;
+}
+
+.mockup-hero-eyebrow {
+  color: #059669;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.mockup-hero-card h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #064E3B;
+  margin: 0 0 24px;
+  letter-spacing: -0.02em;
+}
+
+.mockup-hero-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.mockup-progress-track {
+  height: 8px;
+  width: 150px;
+  background: rgba(16, 185, 129, 0.2);
+  border-radius: 4px;
+}
+
+.mockup-progress-fill {
+  height: 100%;
+  background: #059669;
+  border-radius: 4px;
+}
+
+.mockup-progress-text {
+  font-size: 0.85rem;
+  color: #064E3B;
+}
+
+.mockup-hero-btn {
+  background: #064E3B;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.mockup-hero-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* CSS ILLUSTRATION (LAPTOP) */
+.mockup-hero-illustration {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 450px;
+  height: 300px;
+  z-index: 1;
+}
+
+.css-laptop-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.css-laptop-screen {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  width: 320px;
+  height: 200px;
+  background: #111827;
+  border-radius: 12px;
+  border: 4px solid #4B5563;
+  padding: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+}
+
+.css-laptop-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.css-laptop-code-line {
+  height: 8px;
+  background: #374151;
+  border-radius: 4px;
+  width: 80%;
+}
+
+.w-half { width: 50%; }
+.w-third { width: 30%; }
+
+.css-laptop-base {
+  position: absolute;
+  top: 240px;
+  right: 20px;
+  width: 400px;
+  height: 12px;
+  background: #9CA3AF;
+  border-radius: 0 0 12px 12px;
+}
+
+.css-floating-card {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.css-flow-node {
+  width: 24px;
+  height: 24px;
+  background: #10B981;
+  border-radius: 4px;
+}
+
+.css-flow-line {
+  width: 30px;
+  height: 2px;
+  background: #E5E7EB;
+}
+
+/* GRIDS */
+.mockup-grid-3 {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.mockup-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* CARDS */
+.mockup-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.mockup-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.mockup-card-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: #111827;
+}
+
+.mockup-card-header a {
+  font-size: 0.8rem;
+  color: #10B981;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.mockup-text-green {
+  font-size: 0.8rem;
+  color: #10B981;
+  font-weight: 600;
+}
+
+/* SUBJECTS FLEX (My Subjects) */
+.mockup-subjects-flex {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.mockup-subj-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mockup-subj-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.mockup-subj-item h4 {
+  font-size: 0.85rem;
+  margin: 0 0 8px;
+  color: #1F2937;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.mockup-subj-stat {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.mockup-subj-track {
+  height: 4px;
+  background: #F3F4F6;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+.mockup-subj-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+.mockup-subj-meta {
+  font-size: 0.7rem;
+  color: #6B7280;
+  margin-bottom: 12px;
+}
+
+.mockup-subj-item a {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #10B981;
+}
+
+/* TODOS */
+.mockup-todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.mockup-todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+}
+
+.mockup-todo-item.checked span {
+  text-decoration: line-through;
+  color: #9CA3AF;
+}
+
+.mockup-todo-circle {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid #D1D5DB;
+}
+
+.mockup-todo-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mockup-todo-track {
+  flex: 1;
+  height: 6px;
+  background: #F3F4F6;
+  border-radius: 3px;
+}
+
+.mockup-todo-fill {
+  height: 100%;
+  background: #10B981;
+  border-radius: 3px;
+}
+
+.mockup-btn-light {
+  background: #F3F4F6;
+  color: #374151;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* STREAK */
+.mockup-streak-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mockup-streak-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  align-self: flex-start;
+  margin: 0 0 20px;
+}
+
+.mockup-streak-center {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.mockup-fire-icon {
+  font-size: 2.5rem;
+}
+
+.mockup-streak-number {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.mockup-streak-number strong {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.mockup-streak-number span {
+  font-size: 0.9rem;
+  color: #6B7280;
+  font-weight: 600;
+}
+
+.mockup-streak-text {
+  font-size: 0.85rem;
+  color: #6B7280;
+  margin-bottom: 24px;
+}
+
+.mockup-streak-days {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.mockup-streak-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.mockup-streak-day span {
+  font-size: 0.7rem;
+  color: #9CA3AF;
+  font-weight: 600;
+}
+
+.mockup-streak-circle-empty {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #F3F4F6;
+}
+
+/* LISTS (Sessions, Groups) */
+.mockup-list-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mockup-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mockup-list-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mockup-list-content {
+  flex: 1;
+}
+
+.mockup-list-content h4 {
+  margin: 0 0 2px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.mockup-list-content p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #6B7280;
+}
+
+.mockup-join-btn {
+  background: #F3F4F6;
+  color: #10B981;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mockup-avatars {
+  display: flex;
+}
+
+.mockup-avatar-mini {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  color: white;
+  font-weight: bold;
+  border: 2px solid white;
+  margin-left: -8px;
+}
+
+/* QUICK ACTIONS */
+.mockup-quick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mockup-quick-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border: 1px solid #F3F4F6;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+}
+
+.mockup-quick-btn:hover {
+  background: #F9FAFB;
+}
+
+.mockup-quick-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.mockup-quick-btn span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* ACTIVITY */
+.mockup-time {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+}
+
+.mockup-btn-outline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+}
+
+.mockup-btn-outline:hover {
+  background: #F9FAFB;
+}
+
+/* RESPONSIVE Adjustments */
+@media (max-width: 1024px) {
+  .mockup-grid-3, .mockup-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .col-span-2 {
+    grid-column: span 1;
+  }
+  .mockup-subjects-flex {
+    flex-wrap: wrap;
+  }
+  .mockup-subj-item {
+    flex: 1 1 45%;
+  }
+}
+
+.mockup-menu-btn { background: none; border: none; cursor: pointer; display: flex; align-items: center; padding: 4px; margin-right: 8px; border-radius: 4px; }
+.mockup-menu-btn:hover { background: #E5E7EB; }

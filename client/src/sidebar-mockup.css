@@ -1,0 +1,258 @@
+.mockup-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 50;
+  width: 280px;
+  background: white;
+  border-right: 1px solid #F3F4F6;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-102%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: system-ui, -apple-system, sans-serif;
+  height: 100vh;
+}
+
+.mockup-sidebar.open {
+  transform: translateX(0);
+}
+
+.mockup-sidebar-header {
+  padding: 24px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #F9FAFB;
+}
+
+.mockup-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mockup-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.logo-sync {
+  color: #10B981;
+}
+
+.logo-subtitle {
+  font-size: 0.7rem;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.mockup-menu-btn {
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.mockup-menu-btn:hover {
+  background: #F9FAFB;
+}
+
+.mockup-sidebar-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 20px;
+}
+
+/* Nav Sections */
+.mockup-nav-section {
+  margin-bottom: 32px;
+}
+
+.mockup-nav-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6B7280;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px 12px;
+}
+
+.mockup-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mockup-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #4B5563;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.mockup-nav-link:hover {
+  background: #F9FAFB;
+  color: #111827;
+}
+
+.mockup-nav-link.active {
+  background: #ECFDF5;
+  color: #10B981;
+}
+
+.mockup-nav-link svg {
+  color: #6B7280;
+}
+
+.mockup-nav-link:hover svg {
+  color: #4B5563;
+}
+
+.mockup-nav-link.active svg {
+  color: #10B981;
+}
+
+/* Widgets */
+.mockup-widgets {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 24px;
+}
+
+.mockup-widget-card {
+  background: white;
+  border: 1px solid #F3F4F6;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+}
+
+.widget-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: #1F2937;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.widget-streak-count {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.widget-streak-count strong {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.widget-streak-count span {
+  font-size: 0.75rem;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.widget-streak-days {
+  display: flex;
+  justify-content: space-between;
+}
+
+.widget-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.widget-day span {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #9CA3AF;
+}
+
+.day-check-circle {
+  width: 18px;
+  height: 18px;
+  background: #10B981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.day-empty-circle {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #6B7280;
+  border-radius: 50%;
+}
+
+.quote-widget {
+  background: #FAFAFA;
+}
+
+.quote-marks {
+  font-size: 3rem;
+  color: #6EE7B7;
+  font-family: Georgia, serif;
+  line-height: 0.5;
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+.quote-text {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1F2937;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.quote-author {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #10B981;
+  margin: 0;
+}
+
+/* Sidebar overlay for mobile/small screens */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.sidebar-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
