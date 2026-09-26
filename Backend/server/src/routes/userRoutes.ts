@@ -1,19 +1,22 @@
 import { FastifyInstance } from 'fastify';
 import { requireAuth } from '../middleware/authMiddleware.js';
-import { supabase } from '../utils/supabase.js';
+import { supabase, createUserClient, hasServiceRoleKey } from '../utils/supabase.js';
 
 export default async function userRoutes(fastify: FastifyInstance) {
   // Apply auth middleware to all routes in this plugin
   fastify.addHook('preHandler', requireAuth);
 
+  // Helper to get either admin client or user-scoped client
+  const getClient = (token?: string) => {
+    return hasServiceRoleKey ? supabase : createUserClient(token || '');
+  };
+
   // Get current user's profile
   fastify.get('/profile', async (request, reply) => {
     const user = request.user;
+    const client = getClient(request.token);
     
-    // We use service role to query the profile because we already authenticated the user via middleware.
-    // Alternatively, we could create a user-scoped Supabase client, but since we are a secure backend,
-    // we can just query the database directly for this user's ID.
-    const { data: profile, error } = await supabase
+    const { data: profile, error } = await client
       .from('profiles')
       .select('*')
       .eq('id', user.id)
@@ -35,13 +38,14 @@ export default async function userRoutes(fastify: FastifyInstance) {
   fastify.put('/profile', async (request, reply) => {
     const user = request.user;
     const body = request.body as Record<string, any>;
+    const client = getClient(request.token);
 
     // Prevent users from escalating their own role if we strictly control roles
     if (body.role) {
-      delete body.role; // Example: only admins can change roles
+      delete body.role;
     }
 
-    const { data: updatedProfile, error } = await supabase
+    const { data: updatedProfile, error } = await client
       .from('profiles')
       .update(body)
       .eq('id', user.id)

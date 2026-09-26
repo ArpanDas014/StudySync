@@ -1,15 +1,35 @@
-import { createClient } from '@supabase/supabase-js';
-import dotenv from 'dotenv';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { env } from '../config/env.js';
 
-dotenv.config();
+const activeKey = env.SUPABASE_SERVICE_ROLE_KEY || env.SUPABASE_PUBLISHABLE_KEY;
 
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || '';
+export const hasServiceRoleKey = Boolean(env.SUPABASE_SERVICE_ROLE_KEY);
 
-if (!supabaseUrl || !supabaseServiceKey) {
-  console.warn('⚠️ SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is missing. Supabase client will not work properly.');
+// Primary backend Supabase client.
+// Uses the Service Role Key when configured (bypassing RLS for server-side operations),
+// or the Publishable/Anon Key as fallback.
+export const supabase: SupabaseClient = createClient(env.SUPABASE_URL, activeKey, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+  },
+});
+
+/**
+ * Creates a user-scoped Supabase client that forwards the student's JWT.
+ * This guarantees proper Row Level Security (RLS) enforcement where auth.uid()
+ * is matched, even when SUPABASE_SERVICE_ROLE_KEY is not configured.
+ */
+export function createUserClient(token: string): SupabaseClient {
+  return createClient(env.SUPABASE_URL, env.SUPABASE_PUBLISHABLE_KEY, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+    global: {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  });
 }
-
-// We use the service role key on the backend to bypass RLS when performing admin actions, 
-// OR we can pass the user's JWT to authenticate as them.
-export const supabase = createClient(supabaseUrl, supabaseServiceKey);

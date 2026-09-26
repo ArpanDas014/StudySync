@@ -1,10 +1,11 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { supabase } from '../utils/supabase.js';
 
-// Extend FastifyRequest to include user
+// Extend FastifyRequest to include user and bearer token
 declare module 'fastify' {
   interface FastifyRequest {
     user?: any;
+    token?: string;
   }
 }
 
@@ -27,6 +28,7 @@ export const requireAuth = async (request: FastifyRequest, reply: FastifyReply) 
     return;
   }
 
-  // Attach user to request
+  // Attach user and raw token to request
   request.user = user;
+  request.token = token;
 };

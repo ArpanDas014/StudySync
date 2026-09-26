@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none"><defs>
+  <linearGradient id="ss-flow-a" x1="20" y1="6" x2="78" y2="108" gradientUnits="userSpaceOnUse"><stop stop-color="#0B3D2E"/><stop offset=".55" stop-color="#126F4F"/><stop offset="1" stop-color="#A7F15B"/></linearGradient>
+  <linearGradient id="ss-flow-b" x1="84" y1="22" x2="24" y2="112" gradientUnits="userSpaceOnUse"><stop stop-color="#0B3D2E"/><stop offset=".62" stop-color="#126F4F"/><stop offset="1" stop-color="#A7F15B"/></linearGradient>
+  <linearGradient id="ss-tint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#D8F6DD"/><stop offset="1" stop-color="#F8FAF2"/></linearGradient>
+  <filter id="ss-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#0B3D2E" flood-opacity=".16"/></filter>
+</defs><g transform="translate(0 -10) scale(.73)"><g id="studysync-small-mark"><path d="M52 9C37 6 23 14 22 27c-1 14 17 17 27 24 8 6 2 14-7 15-10 2-20-4-23-13 2 15 15 25 31 23 13-1 24-10 24-22 0-15-19-20-29-27-8-6-2-13 7-14 7-1 13 2 17 6-4-6-10-9-17-10Z" fill="url(#ss-flow-a)"/><path d="M54 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z" fill="#A7F15B"/></g></g></svg>

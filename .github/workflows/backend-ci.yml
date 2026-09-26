@@ -1,0 +1,76 @@
+name: Backend CI
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'Backend/**'
+      - '.github/workflows/backend-ci.yml'
+  push:
+    branches: [ main ]
+    paths:
+      - 'Backend/**'
+      - '.github/workflows/backend-ci.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  supabase-database:
+    name: Supabase Database Quality Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Start Supabase Local Containers
+        run: supabase start --workdir Backend
+
+      - name: Verify Migrations & Reset Database
+        run: supabase db reset --workdir Backend
+
+      - name: Lint Database Schema & Security
+        run: supabase db lint --workdir Backend
+
+      - name: Run Database Unit & Schema Tests (pgTAP)
+        run: supabase test db --workdir Backend
+
+      - name: Verify TypeScript Types Generation
+        run: supabase gen types typescript --local --workdir Backend > /dev/null
+
+      - name: Stop Supabase Containers
+        if: always()
+        run: supabase stop --workdir Backend
+
+  server-quality:
+    name: Backend Server (Node.js/TS) Check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Backend/server
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: Backend/server/package-lock.json
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Type Check
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build

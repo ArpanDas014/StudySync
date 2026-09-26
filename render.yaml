@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: studysync-api
+    runtime: docker
+    dockerfilePath: ./Backend/server/Dockerfile
+    dockerContext: ./Backend/server
+    plan: free
+    region: oregon
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_URL
+        sync: false # Provide your frontend URL (e.g. https://studysync.vercel.app)
+      - key: SUPABASE_URL
+        sync: false # Provide your Supabase project URL (https://<project-ref>.supabase.co)
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false # Provide your Supabase publishable/anon key
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false # Provide your Supabase service_role key
+      - key: LIVEKIT_API_KEY
+        sync: false # Provide your LiveKit API key
+      - key: LIVEKIT_API_SECRET
+        sync: false # Provide your LiveKit API secret
