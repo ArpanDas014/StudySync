@@ -40,7 +40,12 @@ jobs:
         run: supabase db lint --workdir Backend
 
       - name: Run Database Unit & Schema Tests (pgTAP)
-        run: supabase test db --workdir Backend
+        run: |
+          if [ -d "Backend/supabase/tests" ] && [ $(find Backend/supabase/tests -name "*.sql" | wc -l) -gt 0 ]; then
+            supabase test db --workdir Backend
+          else
+            echo "::notice ::No pgTAP test files found in Backend/supabase/tests. Skipping."
+          fi
 
       - name: Verify TypeScript Types Generation
         run: supabase gen types typescript --local --workdir Backend > /dev/null

@@ -61,6 +61,8 @@ jobs:
         if: steps.check-creds.outputs.configured == 'true' && !(inputs.dry_run == true)
         run: |
           supabase db push \
+            --include-all \
+            --yes \
             --password "$SUPABASE_DB_PASSWORD" \
             --workdir Backend
         env:
@@ -72,6 +74,8 @@ jobs:
         run: |
           supabase db push \
             --dry-run \
+            --include-all \
+            --yes \
             --password "$SUPABASE_DB_PASSWORD" \
             --workdir Backend
         env:

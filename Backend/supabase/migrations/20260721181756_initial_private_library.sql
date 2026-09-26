@@ -1,13 +1,13 @@
-create table public.profiles (
+create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
-  display_name text not null check (char_length(trim(display_name)) between 1 and 80),
+  display_name text check (char_length(trim(display_name)) between 1 and 80),
   timezone text not null default 'UTC',
   onboarding_completed_at timestamptz,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
-create table public.subjects (
+create table if not exists public.subjects (
   id uuid primary key default gen_random_uuid(),
   name text not null check (char_length(trim(name)) between 1 and 100),
   slug text,
@@ -17,7 +17,7 @@ create table public.subjects (
   unique (created_by, name)
 );
 
-create table public.user_subjects (
+create table if not exists public.user_subjects (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
   subject_id uuid not null references public.subjects(id) on delete restrict,
@@ -27,7 +27,7 @@ create table public.user_subjects (
   unique (user_id, subject_id)
 );
 
-create table public.resources (
+create table if not exists public.resources (
   id uuid primary key default gen_random_uuid(),
   owner_id uuid not null references auth.users(id) on delete cascade,
   title text not null check (char_length(trim(title)) between 1 and 180),
@@ -41,7 +41,7 @@ create table public.resources (
   deleted_at timestamptz
 );
 
-create table public.resource_files (
+create table if not exists public.resource_files (
   id uuid primary key default gen_random_uuid(),
   resource_id uuid not null references public.resources(id) on delete cascade,
   storage_bucket text not null default 'resource-originals' check (storage_bucket = 'resource-originals'),
@@ -52,9 +52,9 @@ create table public.resource_files (
   created_at timestamptz not null default now()
 );
 
-create index resources_owner_created_at_idx on public.resources (owner_id, created_at desc) where deleted_at is null;
-create index resources_subject_created_at_idx on public.resources (subject_id, created_at desc) where deleted_at is null;
-create index resource_files_resource_id_idx on public.resource_files (resource_id);
+create index if not exists resources_owner_created_at_idx on public.resources (owner_id, created_at desc) where deleted_at is null;
+create index if not exists resources_subject_created_at_idx on public.resources (subject_id, created_at desc) where deleted_at is null;
+create index if not exists resource_files_resource_id_idx on public.resource_files (resource_id);
 
 alter table public.profiles enable row level security;
 alter table public.subjects enable row level security;
@@ -69,46 +69,56 @@ grant select, insert, update, delete on public.user_subjects to authenticated;
 grant select, insert, update, delete on public.resources to authenticated;
 grant select, insert, update, delete on public.resource_files to authenticated;
 
+drop policy if exists "Users can read their profile" on public.profiles;
 create policy "Users can read their profile"
 on public.profiles for select to authenticated
 using ((select auth.uid()) = id);
 
+drop policy if exists "Users can create their profile" on public.profiles;
 create policy "Users can create their profile"
 on public.profiles for insert to authenticated
 with check ((select auth.uid()) = id);
 
+drop policy if exists "Users can update their profile" on public.profiles;
 create policy "Users can update their profile"
 on public.profiles for update to authenticated
 using ((select auth.uid()) = id)
 with check ((select auth.uid()) = id);
 
+drop policy if exists "Users can read canonical or own subjects" on public.subjects;
 create policy "Users can read canonical or own subjects"
 on public.subjects for select to authenticated
 using (is_canonical or (select auth.uid()) = created_by);
 
+drop policy if exists "Users can create custom subjects" on public.subjects;
 create policy "Users can create custom subjects"
 on public.subjects for insert to authenticated
 with check ((select auth.uid()) = created_by and not is_canonical);
 
+drop policy if exists "Users can update custom subjects" on public.subjects;
 create policy "Users can update custom subjects"
 on public.subjects for update to authenticated
 using ((select auth.uid()) = created_by and not is_canonical)
 with check ((select auth.uid()) = created_by and not is_canonical);
 
+drop policy if exists "Users can delete custom subjects" on public.subjects;
 create policy "Users can delete custom subjects"
 on public.subjects for delete to authenticated
 using ((select auth.uid()) = created_by and not is_canonical);
 
+drop policy if exists "Users can manage their subject preferences" on public.user_subjects;
 create policy "Users can manage their subject preferences"
 on public.user_subjects for all to authenticated
 using ((select auth.uid()) = user_id)
 with check ((select auth.uid()) = user_id);
 
+drop policy if exists "Users can manage private resources" on public.resources;
 create policy "Users can manage private resources"
 on public.resources for all to authenticated
 using ((select auth.uid()) = owner_id)
 with check ((select auth.uid()) = owner_id and visibility = 'private');
 
+drop policy if exists "Users can manage files for their resources" on public.resource_files;
 create policy "Users can manage files for their resources"
 on public.resource_files for all to authenticated
 using (exists (
@@ -126,6 +136,7 @@ insert into storage.buckets (id, name, public)
 values ('resource-originals', 'resource-originals', false)
 on conflict (id) do update set public = false;
 
+drop policy if exists "Users can upload their private resource files" on storage.objects;
 create policy "Users can upload their private resource files"
 on storage.objects for insert to authenticated
 with check (
@@ -133,6 +144,7 @@ with check (
   and (storage.foldername(name))[1] = (select auth.jwt()->>'sub')
 );
 
+drop policy if exists "Users can read their private resource files" on storage.objects;
 create policy "Users can read their private resource files"
 on storage.objects for select to authenticated
 using (
@@ -140,6 +152,7 @@ using (
   and (storage.foldername(name))[1] = (select auth.jwt()->>'sub')
 );
 
+drop policy if exists "Users can update their private resource files" on storage.objects;
 create policy "Users can update their private resource files"
 on storage.objects for update to authenticated
 using (
@@ -151,6 +164,7 @@ with check (
   and (storage.foldername(name))[1] = (select auth.jwt()->>'sub')
 );
 
+drop policy if exists "Users can delete their private resource files" on storage.objects;
 create policy "Users can delete their private resource files"
 on storage.objects for delete to authenticated
 using (

@@ -1,0 +1,3 @@
+-- Seed data for StudySync Supabase database
+-- This script runs automatically during `supabase db reset`.
+-- Add any development seed data below if needed.
