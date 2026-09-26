@@ -35,7 +35,7 @@ export default function GroupDetailMockup({ setView }: any) {
         </div>
       </div>
 
-      <div className="mockup-main-content" style={{ paddingTop: '24px', maxWidth: '1400px', display: 'grid', gridTemplateColumns: '300px 1fr', gap: '24px' }}>
+      <div className="mockup-main-content group-detail-grid" style={{ paddingTop: '24px', maxWidth: '1400px' }}>
         
         {/* Left Sidebar */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -91,7 +91,7 @@ export default function GroupDetailMockup({ setView }: any) {
         </div>
 
         {/* Main Chat Area */}
-        <div className="mockup-card" style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 120px)', padding: 0, overflow: 'hidden' }}>
+        <div className="mockup-card group-detail-chat">
           
           <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--theme-border)', background: 'var(--theme-surface)' }}>
             <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700 }}>Group Chat</h3>

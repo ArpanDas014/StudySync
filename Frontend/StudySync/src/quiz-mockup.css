@@ -849,14 +849,28 @@
 }
 
 /* Mobile Adjustments */
-@media (max-width: 768px) {
-  .quiz-mobile-menu {
-    display: block;
+@media (max-width: 900px) {
+  .quiz-main-grid {
+    grid-template-columns: 1fr !important;
+    padding: 16px !important;
+    gap: 16px !important;
   }
-  .quiz-practice-modes {
-    grid-template-columns: 1fr 1fr;
+  .quiz-pills-container {
+    padding: 12px 16px !important;
   }
   .quiz-split-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 }
+
+@media (max-width: 640px) {
+  .quiz-practice-modes {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .badges-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+}
+

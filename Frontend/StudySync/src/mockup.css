@@ -735,5 +735,109 @@
   }
 }
 
+@media (max-width: 768px) {
+  .mockup-main-content {
+    padding: 0 16px;
+  }
+
+  .mockup-hero-card {
+    padding: 24px 18px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    border-radius: 18px !important;
+  }
+
+  .mockup-hero-content {
+    max-width: 100% !important;
+  }
+
+  .mockup-hero-card h1 {
+    font-size: 1.7rem !important;
+    margin: 0 0 14px !important;
+    line-height: 1.2 !important;
+  }
+
+  .mockup-hero-progress-row {
+    margin-bottom: 20px !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  .mockup-hero-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .mockup-hero-illustration {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 180px !important;
+    margin: 20px auto 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .mockup-hero-illustration img {
+    max-height: 160px !important;
+  }
+
+  /* Smooth swipeable horizontal pill filter carousel on mobile */
+  .mockup-pill-row {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    padding: 12px 16px 4px !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 8px !important;
+  }
+  .mockup-pill-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mockup-pill {
+    flex-shrink: 0 !important;
+    font-size: 0.84rem !important;
+    padding: 6px 14px !important;
+    white-space: nowrap !important;
+  }
+
+  .mockup-search-subject {
+    flex-shrink: 0 !important;
+    padding: 6px 12px !important;
+  }
+  .mockup-search-subject input {
+    width: 90px !important;
+  }
+
+  .mockup-grid-3, .mockup-grid-4 {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .mockup-quick-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+  .mockup-quick-btn {
+    padding: 12px 8px !important;
+  }
+  .mockup-quick-icon {
+    width: 36px !important;
+    height: 36px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .mockup-subj-item {
+    flex: 1 1 100% !important;
+  }
+}
+
 .mockup-menu-btn { background: none; border: none; cursor: pointer; display: flex; align-items: center; padding: 4px; margin-right: 8px; border-radius: 4px; }
 .mockup-menu-btn:hover { background: #E5E7EB; }

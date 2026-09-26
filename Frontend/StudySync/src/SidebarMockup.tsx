@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import StudySyncLogo from './components/StudySyncLogo';
 import {
   navDashboard,
@@ -19,19 +19,30 @@ import {
 import './sidebar-mockup.css';
 
 export default function SidebarMockup({ view, setView, isSidebarOpen, setIsSidebarOpen, sidebarState, onLogout }: any) {
+  const navigate = (newView: string) => {
+    setView(newView);
+    if (window.innerWidth <= 900 && setIsSidebarOpen) {
+      setIsSidebarOpen(false);
+    }
+  };
+
   return (
     <>
       <div className={`sidebar-overlay ${isSidebarOpen ? 'show' : ''}`} onClick={() => setIsSidebarOpen(false)}></div>
       
       <aside className={`mockup-sidebar ${isSidebarOpen ? 'open' : ''}`} data-state={sidebarState || 'expanded'}>
         
-        {/* Header */}
+        {/* Header - shown on mobile drawer */}
         <div className="mockup-sidebar-header">
           <div className="mockup-logo-area">
-            <StudySyncLogo variant={sidebarState === 'collapsed' ? 'icon' : 'compact'} height={32} />
+            <StudySyncLogo variant="compact" height={28} />
           </div>
-          <button className="mockup-menu-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-            <Menu size={20} color="#4B5563" />
+          <button 
+            className="mockup-menu-btn" 
+            onClick={() => setIsSidebarOpen(false)}
+            aria-label="Close navigation menu"
+          >
+            <X size={18} color="var(--theme-text-secondary, #4B5563)" />
           </button>
         </div>
 
@@ -41,19 +52,19 @@ export default function SidebarMockup({ view, setView, isSidebarOpen, setIsSideb
           <div className="mockup-nav-section">
             <h3 className="mockup-nav-heading">MAIN</h3>
             <div className="mockup-nav-links">
-              <button className={`mockup-nav-link ${view === 'dashboard' ? 'active' : ''}`} onClick={() => { setView('dashboard'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'dashboard' ? 'active' : ''}`} onClick={() => navigate('dashboard')}>
                 <img src={navDashboard} width={18} height={18} alt="" /> <span className="nav-label" title="Dashboard">Dashboard</span></button>
-              <button className={`mockup-nav-link ${view === 'groups' ? 'active' : ''}`} onClick={() => { setView('groups'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'groups' ? 'active' : ''}`} onClick={() => navigate('groups')}>
                 <img src={navStudyGroups} width={18} height={18} alt="" /> <span className="nav-label" title="Study Groups">Study Groups</span></button>
-              <button className={`mockup-nav-link ${view === 'live-sessions' || view === 'live-room' ? 'active' : ''}`} onClick={() => { setView('live-sessions'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'live-sessions' || view === 'live-room' ? 'active' : ''}`} onClick={() => navigate('live-sessions')}>
                 <img src={navLiveRooms} width={18} height={18} alt="" /> <span className="nav-label" title="Live Sessions">Live Sessions</span></button>
-              <button className={`mockup-nav-link ${view === 'notes' || view === 'files' ? 'active' : ''}`} onClick={() => { setView('notes'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'notes' || view === 'files' ? 'active' : ''}`} onClick={() => navigate('notes')}>
                 <img src={navNotes} width={18} height={18} alt="" /> <span className="nav-label" title="Notes & Files">Notes & Files</span></button>
-              <button className={`mockup-nav-link ${view === 'profile' ? 'active' : ''}`} onClick={() => { setView('profile'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'profile' ? 'active' : ''}`} onClick={() => navigate('profile')}>
                 <img src={navProfile} width={18} height={18} alt="" /> <span className="nav-label" title="My Profile">My Profile</span></button>
-              <button className={`mockup-nav-link ${view === 'calendar' ? 'active' : ''}`} onClick={() => { setView('calendar'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'calendar' ? 'active' : ''}`} onClick={() => navigate('calendar')}>
                 <img src={prodCalendar} width={18} height={18} alt="" /> <span className="nav-label" title="Calendar">Calendar</span></button>
-              <button className={`mockup-nav-link ${view === 'tasks' ? 'active' : ''}`} onClick={() => { setView('tasks'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'tasks' ? 'active' : ''}`} onClick={() => navigate('tasks')}>
                 <img src={navTasks} width={18} height={18} alt="" /> <span className="nav-label" title="Tasks">Tasks</span></button>
             </div>
           </div>
@@ -62,13 +73,13 @@ export default function SidebarMockup({ view, setView, isSidebarOpen, setIsSideb
           <div className="mockup-nav-section">
             <h3 className="mockup-nav-heading">LEARNING</h3>
             <div className="mockup-nav-links">
-              <button className={`mockup-nav-link ${view === 'courses' ? 'active' : ''}`} onClick={() => { setView('courses'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'courses' ? 'active' : ''}`} onClick={() => navigate('courses')}>
                 <img src={navQuizzes} width={18} height={18} alt="" /> <span className="nav-label" title="Courses">Courses</span></button>
-              <button className={`mockup-nav-link ${view === 'quiz' ? 'active' : ''}`} onClick={() => { setView('quiz'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'quiz' ? 'active' : ''}`} onClick={() => navigate('quiz')}>
                 <img src={navQuizzes} width={18} height={18} alt="" /> <span className="nav-label" title="Quiz & Practice">Quiz & Practice</span></button>
-              <button className={`mockup-nav-link ${view === 'resources' ? 'active' : ''}`} onClick={() => { setView('resources'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'resources' ? 'active' : ''}`} onClick={() => navigate('resources')}>
                 <img src={navFiles} width={18} height={18} alt="" /> <span className="nav-label" title="Resources">Resources</span></button>
-              <button className={`mockup-nav-link ${view === 'planner' ? 'active' : ''}`} onClick={() => { setView('planner'); if (window.innerWidth <= 900 && setIsSidebarOpen) setIsSidebarOpen(false); }}>
+              <button className={`mockup-nav-link ${view === 'planner' ? 'active' : ''}`} onClick={() => navigate('planner')}>
                 <img src={navPlanner} width={18} height={18} alt="" /> <span className="nav-label" title="Study Planner">Study Planner</span></button>
             </div>
           </div>

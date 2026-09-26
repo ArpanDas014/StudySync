@@ -46,10 +46,10 @@ export default function StudyGroupsMockup({ setView }: any) {
       <div className="mockup-main-content" style={{ paddingTop: '32px' }}>
         
         {/* Page Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '8px' }}>Group Study</h1>
-            <p style={{ color: 'var(--theme-text-secondary)' }}>Find people to study with, join study communities, and organize collaborative study.</p>
+            <h1 style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 800, marginBottom: '6px' }}>Group Study</h1>
+            <p style={{ color: 'var(--theme-text-secondary)', margin: 0 }}>Find people to study with, join study communities, and organize collaborative study.</p>
           </div>
           <button className="mockup-btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Plus size={18} />
@@ -58,8 +58,8 @@ export default function StudyGroupsMockup({ setView }: any) {
         </div>
 
         {/* Filters */}
-        <div style={{ display: 'flex', gap: '12px', marginBottom: '32px', flexWrap: 'wrap' }}>
-          <div className="mockup-search-container" style={{ width: '300px' }}>
+        <div style={{ display: 'flex', gap: '12px', marginBottom: '24px', flexWrap: 'wrap' }}>
+          <div className="mockup-search-container" style={{ flex: '1 1 200px', maxWidth: '320px', width: '100%' }}>
             <Filter size={16} color="#9CA3AF" />
             <select style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', color: 'var(--theme-text-primary)' }}>
               <option value="">All Subjects</option>
@@ -67,7 +67,7 @@ export default function StudyGroupsMockup({ setView }: any) {
               <option value="math">Mathematics</option>
             </select>
           </div>
-          <div className="mockup-search-container" style={{ width: '200px' }}>
+          <div className="mockup-search-container" style={{ flex: '1 1 160px', maxWidth: '240px', width: '100%' }}>
             <Target size={16} color="#9CA3AF" />
             <select style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', color: 'var(--theme-text-primary)' }}>
               <option value="">Any Level</option>
@@ -79,7 +79,7 @@ export default function StudyGroupsMockup({ setView }: any) {
         </div>
 
         {/* Tabs */}
-        <div className="mockup-subject-row" style={{ marginBottom: '24px' }}>
+        <div className="mockup-pill-row" style={{ margin: 0, padding: 0, border: 'none', marginBottom: '24px' }}>
           <button 
             className={`mockup-pill ${activeTab === 'your-groups' ? 'active-subject' : ''}`}
             onClick={() => setActiveTab('your-groups')}

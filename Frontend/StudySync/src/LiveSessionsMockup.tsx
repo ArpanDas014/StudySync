@@ -126,7 +126,7 @@ export default function LiveSessionsMockup({ setView, setActiveSessionId }: any)
             <div style={{ padding: '40px', textAlign: 'center', color: 'var(--theme-text-secondary)' }}>Loading sessions...</div>
           ) : liveSessions.length > 0 ? (
             liveSessions.map(session => (
-              <div key={session.id} className="mockup-hero-card" style={{ background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.01) 100%)', borderColor: 'rgba(239, 68, 68, 0.15)', boxShadow: '0 10px 40px rgba(239, 68, 68, 0.03)', padding: '32px 48px', marginBottom: '16px' }}>
+              <div key={session.id} className="mockup-hero-card live-session-hero" style={{ background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.01) 100%)', borderColor: 'rgba(239, 68, 68, 0.15)', boxShadow: '0 10px 40px rgba(239, 68, 68, 0.03)', marginBottom: '16px' }}>
                 <div style={{ zIndex: 2 }}>
                   <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#FEE2E2', color: '#DC2626', padding: '4px 10px', borderRadius: '999px', fontSize: '0.75rem', fontWeight: 700, marginBottom: '16px' }}>
                     <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#DC2626' }}></div>
@@ -152,7 +152,7 @@ export default function LiveSessionsMockup({ setView, setActiveSessionId }: any)
                     Join Live Session
                   </button>
                 </div>
-                <div style={{ width: '300px', height: '200px', background: 'var(--theme-surface)', borderRadius: '16px', border: '1px solid var(--theme-border-strong)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
+                <div className="live-sessions-hero-preview">
                   <img src={illusLiveRoom} alt="Live Session" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
@@ -165,7 +165,7 @@ export default function LiveSessionsMockup({ setView, setActiveSessionId }: any)
           )}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
+        <div className="live-sessions-grid">
           {/* Upcoming Sessions */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>

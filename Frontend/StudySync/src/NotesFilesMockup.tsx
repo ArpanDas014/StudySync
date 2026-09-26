@@ -96,14 +96,14 @@ export default function NotesFilesMockup({ setView }: any) {
         </div>
 
         {/* Categories & Upload */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
-          <div className="mockup-subject-row" style={{ margin: 0, padding: 0, border: 'none', paddingBottom: '4px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
+          <div className="mockup-pill-row" style={{ margin: 0, padding: '4px 0', border: 'none', display: 'flex', gap: '8px', overflowX: 'auto', WebkitOverflowScrolling: 'touch', maxWidth: '100%' }}>
             {categories.map(cat => (
               <button 
                 key={cat}
                 className={`mockup-pill ${activeCategory === cat ? 'active-subject' : ''}`}
                 onClick={() => setActiveCategory(cat)}
-                style={{ padding: '6px 12px' }}
+                style={{ padding: '6px 14px', flexShrink: 0, whiteSpace: 'nowrap' }}
               >
                 {cat}
               </button>
@@ -117,7 +117,7 @@ export default function NotesFilesMockup({ setView }: any) {
         </div>
 
         {/* Three Column Layout */}
-        <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr 300px', gap: '24px', alignItems: 'start' }} className="notes-grid-layout">
+        <div className="notes-grid-layout">
           
           {/* LEFT: Folders */}
           <div className="mockup-card" style={{ padding: '16px 12px' }}>
@@ -207,7 +207,7 @@ export default function NotesFilesMockup({ setView }: any) {
                   <button className="mockup-btn-primary">Upload File</button>
                 </div>
               ) : (
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                <table style={{ width: '100%', minWidth: '560px', borderCollapse: 'collapse', textAlign: 'left' }}>
                   <thead>
                     <tr style={{ borderBottom: '1px solid var(--theme-border)', color: 'var(--theme-text-secondary)' }}>
                       <th style={{ padding: '16px 24px', fontWeight: 600, fontSize: 'var(--font-size-sm)' }}>Name</th>

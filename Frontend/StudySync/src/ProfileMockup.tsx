@@ -31,26 +31,26 @@ export default function ProfileMockup() {
   };
 
   return (
-    <div className="dashboard-mockup-wrapper" style={{ padding: '32px 24px', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+    <div className="dashboard-mockup-wrapper" style={{ padding: '24px 16px', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
       
       {/* PROFILE HEADER */}
-      <div className="soft-card" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '24px', padding: '32px' }}>
-        <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-          <div style={{ width: '96px', height: '96px', borderRadius: '50%', background: 'var(--theme-border-strong)', color: 'var(--theme-text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', fontWeight: 700, flexShrink: 0 }}>
+      <div className="soft-card profile-header-card">
+        <div className="profile-header-user">
+          <div className="profile-header-avatar">
             {profileData.fullName.split(' ').map(n => n[0]).join('').substring(0,2)}
           </div>
           <div>
-            <h1 style={{ fontSize: 'var(--font-size-3xl)', fontWeight: 700, marginBottom: '4px' }}>{profileData.fullName}</h1>
+            <h1 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.2rem)', fontWeight: 700, marginBottom: '4px' }}>{profileData.fullName}</h1>
             <p style={{ color: 'var(--theme-text-secondary)', marginBottom: '12px', fontSize: 'var(--font-size-md)' }}>@{profileData.username}</p>
             <p style={{ maxWidth: '600px', lineHeight: 1.5, fontSize: 'var(--font-size-md)' }}>{profileData.bio}</p>
           </div>
         </div>
-        <button className="btn-outline" onClick={() => setIsEditing(true)}>
+        <button className="btn-outline" onClick={() => setIsEditing(true)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
           <Edit3 size={16} /> Edit Profile
         </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+      <div className="profile-grid">
         
         {/* LEFT COLUMN: About & Skills */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>

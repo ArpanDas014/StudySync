@@ -175,19 +175,19 @@ export default function LiveRoomMockup({ setView, activeSessionId }: any) {
         </div>
       </div>
 
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
-        <div style={{ flex: 1, padding: '24px', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ flex: 1, background: '#111827', borderRadius: '16px', overflow: 'hidden', position: 'relative', border: '1px solid var(--theme-border)' }}>
+      <div className="live-room-flex">
+        <div style={{ flex: 1, padding: '16px', display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+          <div style={{ flex: 1, minHeight: '260px', background: '#111827', borderRadius: '16px', overflow: 'hidden', position: 'relative', border: '1px solid var(--theme-border)' }}>
              <RoomAudioRenderer />
              <VideoGrid />
           </div>
 
-          <div style={{ background: 'var(--theme-surface)', padding: '16px 24px', borderRadius: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', border: '1px solid var(--theme-border-strong)', marginTop: '24px' }}>
+          <div style={{ background: 'var(--theme-surface)', padding: '12px 18px', borderRadius: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', border: '1px solid var(--theme-border-strong)', marginTop: '16px', flexWrap: 'wrap' }}>
             <CustomControls onLeave={handleLeave} />
           </div>
         </div>
 
-        <div style={{ width: '340px', background: 'var(--theme-surface)', borderLeft: '1px solid var(--theme-border)', display: 'flex', flexDirection: 'column' }}>
+        <div className="live-room-chat-panel" style={{ width: '340px', background: 'var(--theme-surface)', borderLeft: '1px solid var(--theme-border)', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', borderBottom: '1px solid var(--theme-border)' }}>
             <button onClick={() => setChatMode('chat')} style={{ flex: 1, padding: '16px', background: 'transparent', border: 'none', borderBottom: chatMode === 'chat' ? '2px solid #10B981' : '2px solid transparent', color: chatMode === 'chat' ? 'var(--theme-text-primary)' : 'var(--theme-text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer' }}>
               <img src={commChat} width={16} height={16} alt="" /> Chat

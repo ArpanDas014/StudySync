@@ -9,6 +9,7 @@ import {
 
 export interface StudySyncLogoProps {
   variant?: 'compact' | 'full' | 'stacked' | 'icon';
+  theme?: 'light' | 'dark' | 'auto';
   height?: number | string;
   width?: number | string;
   className?: string;
@@ -18,6 +19,7 @@ export interface StudySyncLogoProps {
 
 export default function StudySyncLogo({
   variant = 'compact',
+  theme = 'auto',
   height,
   width,
   className = '',
@@ -47,22 +49,24 @@ export default function StudySyncLogo({
     return () => observer.disconnect();
   }, []);
 
+  const effectiveIsDark = theme === 'dark' ? true : (theme === 'light' ? false : isDark);
+
   const getSource = () => {
     switch (variant) {
       case 'icon':
         return logoIcon;
       case 'stacked':
-        return logoStacked;
+        // If theme is dark, use logoDark to ensure high-contrast readable white typography
+        return effectiveIsDark ? logoDark : logoStacked;
       case 'full':
-        return isDark ? logoDark : logoPrimary;
+        return effectiveIsDark ? logoDark : logoPrimary;
       case 'compact':
       default:
-        // In compact header, for dark theme we can use logoDark or logoCompactHeader
-        return isDark ? logoDark : logoCompactHeader;
+        return effectiveIsDark ? logoDark : logoCompactHeader;
     }
   };
 
-  const defaultHeight = variant === 'icon' ? 32 : (variant === 'compact' ? 32 : (variant === 'stacked' ? 64 : 36));
+  const defaultHeight = variant === 'icon' ? 32 : (variant === 'compact' ? 32 : (variant === 'stacked' ? 56 : 36));
 
   return (
     <img
@@ -75,6 +79,10 @@ export default function StudySyncLogo({
         display: 'inline-block',
         verticalAlign: 'middle',
         objectFit: 'contain',
+        maxWidth: '100%',
+        width: width ?? 'auto',
+        height: height ?? defaultHeight,
+        flexShrink: 0,
         ...style
       }}
       draggable={false}

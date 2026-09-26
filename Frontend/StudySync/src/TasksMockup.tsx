@@ -94,7 +94,7 @@ export default function TasksMockup({ setView }: any) {
       <div className="mockup-main-content" style={{ paddingTop: '32px', maxWidth: '1000px', margin: '0 auto' }}>
         
         {/* Page Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px' }}>
+        <div className="tasks-header">
           <div>
             <h1 style={{ marginBottom: '8px' }}>Tasks</h1>
             <p style={{ color: 'var(--theme-text-secondary)', margin: 0 }}>Stay organized, keep track of your work, and never miss an important deadline.</p>
@@ -106,7 +106,7 @@ export default function TasksMockup({ setView }: any) {
         </div>
 
         {/* Compact Summary blocks */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '16px', marginBottom: '32px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '16px', marginBottom: '32px' }}>
           {[
             { label: "Today's Tasks", count: tasks.filter(t => t.group === 'TODAY' && !t.completed).length, icon: Calendar, color: '#3B82F6' },
             { label: "Due Soon", count: tasks.filter(t => t.group === 'TOMORROW' && !t.completed).length, icon: Clock, color: '#F59E0B' },
@@ -126,14 +126,14 @@ export default function TasksMockup({ setView }: any) {
         </div>
 
         {/* Filters */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
-          <div className="mockup-subject-row" style={{ margin: 0, padding: 0, border: 'none' }}>
+        <div className="tasks-filter-bar">
+          <div className="mockup-subject-row" style={{ margin: 0, padding: 0, border: 'none', overflowX: 'auto', flexWrap: 'nowrap' }}>
             {filters.map(filter => (
               <button 
                 key={filter}
                 className={`mockup-pill ${activeFilter === filter ? 'active-subject' : ''}`}
                 onClick={() => setActiveFilter(filter)}
-                style={{ padding: '6px 16px' }}
+                style={{ padding: '6px 16px', flexShrink: 0 }}
               >
                 {filter}
               </button>
