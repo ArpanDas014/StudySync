@@ -1324,3 +1324,12 @@ strong, b {
   }
 }
 
+/* BRAND LOGO STYLES */
+.studysync-logo {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
+}
+
+
