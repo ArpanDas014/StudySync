@@ -3,18 +3,14 @@
   "private": true,
   "version": "0.1.0",
   "workspaces": [
-    "client",
-    "server",
-    "packages/shared"
+    "Frontend/StudySync",
+    "Backend/server"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
-    "dev:client": "npm run dev --workspace client",
-    "dev:server": "npm run dev --workspace server",
-    "build": "npm run build --workspace client && npm run build --workspace server",
-    "typecheck": "npm run typecheck --workspace client && npm run typecheck --workspace server"
-  },
-  "devDependencies": {
-    "concurrently": "^10.0.5"
+    "dev": "npm run dev --workspace Frontend/StudySync",
+    "dev:frontend": "npm run dev --workspace Frontend/StudySync",
+    "dev:backend": "npm run dev --workspace Backend/server",
+    "build": "npm run build --workspace Frontend/StudySync",
+    "start": "npm run dev --workspace Frontend/StudySync"
   }
 }

@@ -4,19 +4,44 @@ StudySync is a student-first learning workspace for resources, planning, and gui
 
 ## Current foundation
 
-- Responsive React + Vite + TypeScript client implementing the landing page, dashboard, library, planner, AI assistant, groups, and settings surfaces.
-- Node.js + Fastify API with a health endpoint.
-- Supabase local configuration and a first private-library migration with Row-Level Security and private Storage policies.
+- Responsive React + Vite + TypeScript client located at `Frontend/StudySync`.
+- Node.js + Fastify API located at `Backend/server` with a health endpoint.
+- Supabase local configuration and migrations located at `Backend/supabase`.
+- Comprehensive engineering & product documentation suite located at [`Documentation/INDEX.md`](./Documentation/INDEX.md).
+
+## Project Structure
+
+```
+├── .github/
+├── Backend/
+│   ├── server/          # Node.js + Fastify API
+│   └── supabase/        # Supabase config and SQL migrations
+├── Documentation/       # Complete Engineering Docs Suite (PRD, SRS, Architecture, etc.)
+├── Frontend/
+│   └── StudySync/       # React + Vite frontend client
+└── README.md
+```
 
 ## Run locally
 
-1. Copy `.env.example` to `.env.local` and add Supabase values when the dedicated StudySync project is available.
-2. Install dependencies with `npm install`.
-3. Start the client with `npm run dev:client`.
-4. Start the API separately with `npm run dev:server`.
+1. Configure environment variables (`.env` or `.env.local`) with your Supabase values.
 
-The client runs at `http://localhost:5173`; the API health check is at `http://localhost:3001/health`.
+### Frontend (`Frontend/StudySync`)
+```bash
+cd Frontend/StudySync
+npm install
+npm run dev
+```
+The client runs at `http://localhost:5173`.
+
+### Backend (`Backend/server`)
+```bash
+cd Backend/server
+npm install
+npm run dev
+```
+The API health check runs at `http://localhost:3001/health`.
 
 ## Before applying the migration
 
-The migration at `supabase/migrations/20260721181756_initial_private_library.sql` creates the first private-library data model and Storage policies. Link or create the dedicated StudySync Supabase project first; do not apply it to an unrelated project.
+The migration at `Backend/supabase/migrations/20260721181756_initial_private_library.sql` creates the first private-library data model and Storage policies. Link or create the dedicated StudySync Supabase project first; do not apply it to an unrelated project.

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from './lib/supabase';
 import { AuthView } from './AuthView';
+import LandingPage from './pages/LandingPage';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import DashboardMockup from './DashboardMockup';
@@ -22,7 +23,14 @@ type View = 'welcome' | 'auth' | 'dashboard' | 'analytics' | 'visuals' | 'librar
 export default function App() {
   const [view, setView] = useState<View>('dashboard');
   const [activeSessionId, setActiveSessionId] = useState<string | null>(null);
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<any>(() => {
+    try {
+      const saved = localStorage.getItem('studysync_guest_session');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
   
   // Layout states
   const [sidebarState, setSidebarState] = useState<'expanded' | 'collapsed' | 'hidden'>('expanded');
@@ -31,12 +39,42 @@ export default function App() {
 
   useEffect(() => {
     if (!supabase) return;
-    supabase.auth.getSession().then(({ data: { session } }) => setSession(session));
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+    supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
+      if (currentSession) setSession(currentSession);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
+      if (currentSession) {
+        setSession(currentSession);
+      }
     });
     return () => subscription.unsubscribe();
   }, []);
+
+  const handleGuestLogin = () => {
+    const demoSession = {
+      user: {
+        id: 'demo-student-id',
+        email: 'student@studysync.demo',
+        user_metadata: { name: 'Demo Student' },
+      },
+    };
+    try {
+      localStorage.setItem('studysync_guest_session', JSON.stringify(demoSession));
+    } catch {}
+    setSession(demoSession);
+    setView('dashboard');
+  };
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem('studysync_guest_session');
+    } catch {}
+    if (supabase) {
+      supabase.auth.signOut().catch(() => {});
+    }
+    setSession(null);
+    setView('welcome');
+  };
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
@@ -63,7 +101,20 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  if (!session) return <AuthView />;
+  // Landing page view
+  if (view === 'welcome') {
+    return (
+      <LandingPage
+        onGetStarted={handleGuestLogin}
+        onLogin={() => setView('auth')}
+      />
+    );
+  }
+
+  // Auth gate
+  if (!session) {
+    return <AuthView onGuestLogin={handleGuestLogin} />;
+  }
 
   return (
     <div className="app-layout" style={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100vw', overflow: 'hidden' }}>
@@ -80,17 +131,18 @@ export default function App() {
           setView={setView} 
           isSidebarOpen={isSidebarOpen} 
           setIsSidebarOpen={setIsSidebarOpen} 
-          sidebarState={sidebarState} 
+          sidebarState={sidebarState}
+          onLogout={handleLogout}
         />
 
         {/* Content Area */}
         <main className="main-content" style={{ flex: 1, overflowY: 'auto', background: 'var(--theme-bg)' }}>
           <AnimatePresence mode="wait">
             
-            {/* Supabase Auth View (If needed later, but mockup currently bypasses) */}
+            {/* Supabase Auth View */}
             {view === 'auth' && (
               <motion.div key="auth" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
-                <AuthView />
+                <AuthView onGuestLogin={handleGuestLogin} />
               </motion.div>
             )}
 
