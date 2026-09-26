@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Search, Bell, ChevronDown, Users, FileText, Target, Video, ArrowLeft, Send, Paperclip, Clock, Calendar } from 'lucide-react';
+import { navStudyGroups, navLiveRooms } from './assets';
 import ThemeToggle from './ThemeToggle';
 
 export default function GroupDetailMockup({ setView }: any) {
@@ -17,8 +18,8 @@ export default function GroupDetailMockup({ setView }: any) {
           >
             <ArrowLeft size={20} />
           </button>
-          <div className="mockup-class-icon" style={{ background: '#D1FAE5', color: '#10B981', width: '32px', height: '32px', marginBottom: 0, borderRadius: '8px' }}>
-            <Users size={16} />
+          <div className="mockup-class-icon" style={{ background: '#D1FAE5', color: '#10B981', width: '32px', height: '32px', marginBottom: 0, borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img src={navStudyGroups} width={18} height={18} alt="" />
           </div>
           <h2 style={{ fontSize: '1.2rem', fontWeight: 700, margin: 0 }}>DSA Warriors</h2>
         </div>
@@ -53,7 +54,7 @@ export default function GroupDetailMockup({ setView }: any) {
               style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '24px' }}
               onClick={() => setView('live-room')}
             >
-              <Video size={18} /> Join Live Study
+              <img src={navLiveRooms} width={18} height={18} alt="" style={{ filter: 'brightness(10)' }} /> Join Live Study
             </button>
           </div>
 

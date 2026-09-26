@@ -5,6 +5,7 @@ import {
   CheckSquare, Calendar, MoreVertical, X,
   Clock, AlertCircle, CheckCircle2, ChevronRight
 } from 'lucide-react';
+import { illusNoTasks, prodCheck } from './assets';
 import ThemeToggle from './ThemeToggle';
 
 export default function TasksMockup({ setView }: any) {
@@ -148,9 +149,22 @@ export default function TasksMockup({ setView }: any) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           
           {filteredTasks.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '64px 24px', color: 'var(--theme-text-secondary)' }}>
-              <CheckSquare size={48} opacity={0.2} style={{ margin: '0 auto 16px', display: 'block' }} />
-              <h3 style={{ color: 'var(--theme-text-primary)', marginBottom: '8px' }}>You're all caught up.</h3>
+            <div style={{ textAlign: 'center', padding: '48px 24px', color: 'var(--theme-text-secondary)' }}>
+              <img 
+                src={illusNoTasks} 
+                alt="No tasks" 
+                style={{ 
+                  maxWidth: '320px', 
+                  width: '100%', 
+                  maxHeight: '200px', 
+                  objectFit: 'contain', 
+                  margin: '0 auto 20px', 
+                  display: 'block', 
+                  borderRadius: '16px', 
+                  filter: 'drop-shadow(0 6px 20px rgba(0,0,0,0.06))' 
+                }} 
+              />
+              <h3 style={{ color: 'var(--theme-text-primary)', marginBottom: '8px', fontSize: 'var(--font-size-xl)' }}>You're all caught up.</h3>
               <p style={{ marginBottom: '24px' }}>No tasks need your attention right now.</p>
               <button className="mockup-btn-primary" onClick={() => setIsModalOpen(true)}>+ New Task</button>
             </div>
@@ -166,8 +180,8 @@ export default function TasksMockup({ setView }: any) {
                   </h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {groupTasks.map((task: any) => {
-                      const pStyle = getPriorityStyle(task.priority);
-                      return (
+                       const pStyle = getPriorityStyle(task.priority);
+                       return (
                         <div key={task.id} className="mockup-card" style={{ padding: '16px', display: 'flex', alignItems: 'center', gap: '16px', opacity: task.completed ? 0.6 : 1, transition: 'all 0.2s ease' }}>
                           <button 
                             onClick={() => toggleTask(task.id)}
@@ -179,7 +193,7 @@ export default function TasksMockup({ setView }: any) {
                               cursor: 'pointer', flexShrink: 0, transition: 'all 0.2s ease'
                             }}
                           >
-                            {task.completed && <CheckCircle2 size={16} color="white" />}
+                            {task.completed && <img src={prodCheck} width={12} height={12} alt="Done" style={{ filter: 'brightness(10)' }} />}
                           </button>
                           
                           <div style={{ flex: 1, minWidth: 0 }}>

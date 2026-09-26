@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Mic, MicOff, Video, VideoOff, MonitorUp, Smile, PhoneOff, MessageSquare, Users, ChevronLeft } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
+import { 
+  commMic, 
+  commMicMuted, 
+  commCamera, 
+  commCameraOff, 
+  commScreenShare, 
+  commLeaveRoom, 
+  commChat, 
+  commParticipants,
+  commReaction 
+} from './assets';
 import { createClient } from '@supabase/supabase-js';
 import { 
   LiveKitRoom, 
@@ -179,10 +190,10 @@ export default function LiveRoomMockup({ setView, activeSessionId }: any) {
         <div style={{ width: '340px', background: 'var(--theme-surface)', borderLeft: '1px solid var(--theme-border)', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', borderBottom: '1px solid var(--theme-border)' }}>
             <button onClick={() => setChatMode('chat')} style={{ flex: 1, padding: '16px', background: 'transparent', border: 'none', borderBottom: chatMode === 'chat' ? '2px solid #10B981' : '2px solid transparent', color: chatMode === 'chat' ? 'var(--theme-text-primary)' : 'var(--theme-text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer' }}>
-              <MessageSquare size={16} /> Chat
+              <img src={commChat} width={16} height={16} alt="" /> Chat
             </button>
             <button onClick={() => setChatMode('participants')} style={{ flex: 1, padding: '16px', background: 'transparent', border: 'none', borderBottom: chatMode === 'participants' ? '2px solid #10B981' : '2px solid transparent', color: chatMode === 'participants' ? 'var(--theme-text-primary)' : 'var(--theme-text-secondary)', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer' }}>
-              <Users size={16} /> {participantsCount}
+              <img src={commParticipants} width={16} height={16} alt="" /> {participantsCount}
             </button>
           </div>
 
@@ -208,8 +219,8 @@ export default function LiveRoomMockup({ setView, activeSessionId }: any) {
               <div style={{ padding: '16px', borderTop: '1px solid var(--theme-border)' }}>
                 <form onSubmit={handleSendMessage} style={{ background: 'var(--theme-input-bg)', border: '1px solid var(--theme-border-strong)', borderRadius: '8px', padding: '12px', display: 'flex', gap: '12px' }}>
                   <input type="text" placeholder="Send a message..." value={newMessage} onChange={e => setNewMessage(e.target.value)} style={{ border: 'none', background: 'transparent', outline: 'none', flex: 1, color: 'var(--theme-text-primary)' }} />
-                  <button type="submit" style={{ background: 'transparent', border: 'none', color: '#10B981', cursor: 'pointer' }}>
-                    <Smile size={20} />
+                  <button type="submit" style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img src={commReaction} alt="Send" style={{ width: '20px', height: '20px' }} />
                   </button>
                 </form>
               </div>
@@ -266,22 +277,37 @@ function CustomControls({ onLeave }: { onLeave: () => void }) {
   
   return (
     <>
-      <button className="live-ctrl-btn" style={{ background: isMicrophoneEnabled ? 'var(--theme-input-bg)' : '#EF4444', color: isMicrophoneEnabled ? 'var(--theme-text-primary)' : 'white', border: isMicrophoneEnabled ? '1px solid var(--theme-border)' : 'none' }} onClick={() => room.localParticipant.setMicrophoneEnabled(!isMicrophoneEnabled)}>
-        {isMicrophoneEnabled ? <Mic size={20} /> : <MicOff size={20} />}
+      <button 
+        className="live-ctrl-btn" 
+        style={{ background: isMicrophoneEnabled ? 'var(--theme-input-bg)' : '#EF4444', border: isMicrophoneEnabled ? '1px solid var(--theme-border)' : 'none' }} 
+        onClick={() => room.localParticipant.setMicrophoneEnabled(!isMicrophoneEnabled)}
+        title={isMicrophoneEnabled ? "Mute Microphone" : "Unmute Microphone"}
+      >
+        <img src={isMicrophoneEnabled ? commMic : commMicMuted} width={20} height={20} alt="Mic" style={!isMicrophoneEnabled ? { filter: 'brightness(10)' } : undefined} />
       </button>
-      <button className="live-ctrl-btn" style={{ background: isCameraEnabled ? 'var(--theme-input-bg)' : '#EF4444', color: isCameraEnabled ? 'var(--theme-text-primary)' : 'white', border: isCameraEnabled ? '1px solid var(--theme-border)' : 'none' }} onClick={() => room.localParticipant.setCameraEnabled(!isCameraEnabled)}>
-        {isCameraEnabled ? <Video size={20} /> : <VideoOff size={20} />}
+      <button 
+        className="live-ctrl-btn" 
+        style={{ background: isCameraEnabled ? 'var(--theme-input-bg)' : '#EF4444', border: isCameraEnabled ? '1px solid var(--theme-border)' : 'none' }} 
+        onClick={() => room.localParticipant.setCameraEnabled(!isCameraEnabled)}
+        title={isCameraEnabled ? "Turn off Camera" : "Turn on Camera"}
+      >
+        <img src={isCameraEnabled ? commCamera : commCameraOff} width={20} height={20} alt="Camera" style={!isCameraEnabled ? { filter: 'brightness(10)' } : undefined} />
       </button>
       <div style={{ width: '1px', height: '24px', background: 'var(--theme-border-strong)', margin: '0 8px' }}></div>
-      <button className="live-ctrl-btn" style={{ background: isScreenShareEnabled ? '#3B82F6' : 'var(--theme-input-bg)', color: isScreenShareEnabled ? 'white' : 'var(--theme-text-primary)', border: isScreenShareEnabled ? 'none' : '1px solid var(--theme-border)' }} onClick={() => room.localParticipant.setScreenShareEnabled(!isScreenShareEnabled)}>
-        <MonitorUp size={20} />
+      <button 
+        className="live-ctrl-btn" 
+        style={{ background: isScreenShareEnabled ? '#3B82F6' : 'var(--theme-input-bg)', border: isScreenShareEnabled ? 'none' : '1px solid var(--theme-border)' }} 
+        onClick={() => room.localParticipant.setScreenShareEnabled(!isScreenShareEnabled)}
+        title="Share Screen"
+      >
+        <img src={commScreenShare} width={20} height={20} alt="Share Screen" style={isScreenShareEnabled ? { filter: 'brightness(10)' } : undefined} />
       </button>
       <div style={{ width: '1px', height: '24px', background: 'var(--theme-border-strong)', margin: '0 8px' }}></div>
       <button 
         style={{ background: 'linear-gradient(180deg, #EF4444 0%, #DC2626 100%)', color: 'white', border: 'none', padding: '12px 24px', borderRadius: '8px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', boxShadow: '0 4px 12px rgba(239, 68, 68, 0.3)' }}
         onClick={onLeave}
       >
-        <PhoneOff size={18} /> Leave Session
+        <img src={commLeaveRoom} width={18} height={18} alt="" style={{ filter: 'brightness(10)' }} /> Leave Session
       </button>
       <style dangerouslySetInnerHTML={{__html: `
         .live-ctrl-btn {

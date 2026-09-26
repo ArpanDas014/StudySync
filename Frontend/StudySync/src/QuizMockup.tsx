@@ -5,6 +5,18 @@ import {
   Menu, Play, Book, BrainCircuit, Activity, Shield, Code, Server, Network,
   Crown, Flame, Calendar, Diamond, Beaker
 } from 'lucide-react';
+import {
+  subjectAlgorithms,
+  subjectDataStructures,
+  subjectDbms,
+  subjectOs,
+  subjectWebDev,
+  subjectAi,
+  subjectNetworks,
+  subjectCybersecurity,
+  prodStreak,
+  illusQuizzes
+} from './assets';
 import './quiz-mockup.css';
 
 export default function QuizMockup({ setView }: any) {
@@ -12,14 +24,14 @@ export default function QuizMockup({ setView }: any) {
   const [selectedTopic, setSelectedTopic] = useState('All Topics');
 
   const subjects = [
-    { name: 'Algorithms', icon: <Beaker size={16} /> },
-    { name: 'Data Structures', icon: <Network size={16} /> },
-    { name: 'DBMS', icon: <Server size={16} /> },
-    { name: 'Operating Systems', icon: <Target size={16} /> },
-    { name: 'Web Development', icon: <Code size={16} /> },
-    { name: 'AI / ML', icon: <BrainCircuit size={16} /> },
-    { name: 'Networks', icon: <Activity size={16} /> },
-    { name: 'Cybersecurity', icon: <Shield size={16} /> }
+    { name: 'Algorithms', icon: subjectAlgorithms },
+    { name: 'Data Structures', icon: subjectDataStructures },
+    { name: 'DBMS', icon: subjectDbms },
+    { name: 'Operating Systems', icon: subjectOs },
+    { name: 'Web Development', icon: subjectWebDev },
+    { name: 'AI / ML', icon: subjectAi },
+    { name: 'Networks', icon: subjectNetworks },
+    { name: 'Cybersecurity', icon: subjectCybersecurity }
   ];
 
   const topics = [
@@ -59,8 +71,8 @@ export default function QuizMockup({ setView }: any) {
 
         <div className="quiz-header-actions">
           <ThemeToggle />
-          <div className="quiz-streak">
-            🔥 <span>12 Day Streak</span>
+          <div className="quiz-streak" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <img src={prodStreak} width={18} height={18} alt="" /> <span>12 Day Streak</span>
           </div>
           <button className="quiz-bell">
             <Bell size={20} color="#4B5563" />
@@ -84,8 +96,9 @@ export default function QuizMockup({ setView }: any) {
               key={s.name}
               className={`quiz-pill ${selectedSubject === s.name ? 'active' : ''}`}
               onClick={() => setSelectedSubject(s.name)}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
             >
-              {s.icon} {s.name}
+              <img src={s.icon} width={18} height={18} alt="" /> {s.name}
             </button>
           ))}
         </div>
@@ -123,20 +136,12 @@ export default function QuizMockup({ setView }: any) {
                 </button>
               </div>
             </div>
-            <div className="quiz-hero-illustration">
-              <div className="ill-laptop">
-                <div className="ill-screen">
-                  <div className="ill-code-line short"></div>
-                  <div className="ill-code-line long"></div>
-                  <div className="ill-code-line med"></div>
-                </div>
-                <div className="ill-base"></div>
-              </div>
-              <div className="ill-books">
-                <div className="ill-book book1"></div>
-                <div className="ill-book book2"></div>
-                <div className="ill-book book3"></div>
-              </div>
+            <div className="quiz-hero-illustration" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img 
+                src={illusQuizzes} 
+                alt="Quiz Practice" 
+                style={{ maxHeight: '160px', maxWidth: '100%', objectFit: 'contain' }} 
+              />
             </div>
           </div>
 

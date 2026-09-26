@@ -7,6 +7,20 @@ import {
   List, Grid, File, UploadCloud, Clock, Edit3 
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import {
+  fileFolder,
+  navNotes,
+  fileCode,
+  fileGeneric,
+  fileStar,
+  fileTrash,
+  filePdf,
+  fileWord,
+  fileMarkdown,
+  fileImage,
+  fileUpload,
+  illusNoFiles
+} from './assets';
 
 export default function NotesFilesMockup({ setView }: any) {
   const [activeCategory, setActiveCategory] = useState('All Files');
@@ -15,14 +29,14 @@ export default function NotesFilesMockup({ setView }: any) {
   const categories = ['All Files', 'Notes', 'Documents', 'Images', 'Code Snippets', 'Shared with Me', 'Starred', 'Trash'];
   
   const folders = [
-    { name: 'All Files', count: 124, icon: Folder },
-    { name: 'My Notes', count: 24, icon: FileText },
-    { name: 'Class Notes', count: 18, icon: FileText },
-    { name: 'Projects', count: 12, icon: Code },
-    { name: 'Assignments', count: 10, icon: File },
-    { name: 'Resources', count: 45, icon: Folder },
-    { name: 'Exam Prep', count: 8, icon: Star },
-    { name: 'Trash', count: 7, icon: Trash2 },
+    { name: 'All Files', count: 124, icon: fileFolder },
+    { name: 'My Notes', count: 24, icon: navNotes },
+    { name: 'Class Notes', count: 18, icon: navNotes },
+    { name: 'Projects', count: 12, icon: fileCode },
+    { name: 'Assignments', count: 10, icon: fileGeneric },
+    { name: 'Resources', count: 45, icon: fileFolder },
+    { name: 'Exam Prep', count: 8, icon: fileStar },
+    { name: 'Trash', count: 7, icon: fileTrash },
   ];
 
   const quickAccess = [
@@ -33,11 +47,11 @@ export default function NotesFilesMockup({ setView }: any) {
   ];
 
   const recentFiles = [
-    { name: 'Dynamic_Programming_Notes.pdf', type: 'PDF', size: '2.4 MB', date: 'Sep 18, 2026', icon: FileText, color: '#EF4444', bg: '#FEE2E2', location: 'Algorithms' },
-    { name: 'OS_Processes_Revision.docx', type: 'DOCX', size: '1.2 MB', date: 'Sep 17, 2026', icon: File, color: '#3B82F6', bg: '#DBEAFE', location: 'Operating Systems' },
-    { name: 'React_Important_Concepts.md', type: 'MD', size: '15 KB', date: 'Sep 16, 2026', icon: Code, color: '#F59E0B', bg: '#FEF3C7', location: 'Web Development' },
-    { name: 'Database_ER_Diagram.png', type: 'PNG', size: '340 KB', date: 'Sep 15, 2026', icon: ImageIcon, color: '#10B981', bg: '#D1FAE5', location: 'Projects' },
-    { name: 'Binary_Search.cpp', type: 'CPP', size: '3 KB', date: 'Sep 14, 2026', icon: Code, color: '#8B5CF6', bg: '#F3E8FF', location: 'Data Structures' },
+    { name: 'Dynamic_Programming_Notes.pdf', type: 'PDF', size: '2.4 MB', date: 'Sep 18, 2026', icon: filePdf, color: '#EF4444', bg: '#FEE2E2', location: 'Algorithms' },
+    { name: 'OS_Processes_Revision.docx', type: 'DOCX', size: '1.2 MB', date: 'Sep 17, 2026', icon: fileWord, color: '#3B82F6', bg: '#DBEAFE', location: 'Operating Systems' },
+    { name: 'React_Important_Concepts.md', type: 'MD', size: '15 KB', date: 'Sep 16, 2026', icon: fileMarkdown, color: '#F59E0B', bg: '#FEF3C7', location: 'Web Development' },
+    { name: 'Database_ER_Diagram.png', type: 'PNG', size: '340 KB', date: 'Sep 15, 2026', icon: fileImage, color: '#10B981', bg: '#D1FAE5', location: 'Projects' },
+    { name: 'Binary_Search.cpp', type: 'CPP', size: '3 KB', date: 'Sep 14, 2026', icon: fileCode, color: '#8B5CF6', bg: '#F3E8FF', location: 'Data Structures' },
   ];
 
   return (
@@ -97,7 +111,7 @@ export default function NotesFilesMockup({ setView }: any) {
           </div>
           
           <button className="mockup-btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <UploadCloud size={18} />
+            <img src={fileUpload} width={18} height={18} alt="" />
             Upload File
           </button>
         </div>
@@ -129,7 +143,7 @@ export default function NotesFilesMockup({ setView }: any) {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <folder.icon size={18} color={activeFolder === folder.name ? '#10B981' : 'var(--theme-text-secondary)'} />
+                    <img src={folder.icon} width={18} height={18} alt="" />
                     <span>{folder.name}</span>
                   </div>
                   <span style={{ fontSize: 'var(--font-size-xs)' }}>{folder.count}</span>
@@ -185,9 +199,9 @@ export default function NotesFilesMockup({ setView }: any) {
               </div>
 
               <div className="mockup-card" style={{ padding: 0, overflowX: 'auto' }}>
-                              {recentFiles.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '64px 24px', color: 'var(--theme-text-secondary)' }}>
-                  <Folder size={48} opacity={0.2} style={{ margin: '0 auto 16px', display: 'block' }} />
+                {recentFiles.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '48px 24px', color: 'var(--theme-text-secondary)' }}>
+                  <img src={illusNoFiles} alt="No files" style={{ maxWidth: '320px', width: '100%', maxHeight: '200px', objectFit: 'contain', margin: '0 auto 16px', display: 'block', borderRadius: '16px' }} />
                   <h3 style={{ color: 'var(--theme-text-primary)', marginBottom: '8px' }}>No files yet</h3>
                   <p style={{ marginBottom: '24px' }}>Upload your first study material to get started.</p>
                   <button className="mockup-btn-primary">Upload File</button>
@@ -210,7 +224,7 @@ export default function NotesFilesMockup({ setView }: any) {
                         <td style={{ padding: '16px 24px' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                             <div style={{ width: '36px', height: '36px', borderRadius: '8px', background: file.bg, color: file.color, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <file.icon size={18} />
+                              <img src={file.icon} width={20} height={20} alt={file.type} />
                             </div>
                             <span style={{ fontWeight: 600, color: 'var(--theme-text-primary)' }}>{file.name}</span>
                           </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Bell, ChevronDown, Users, Target, Clock, MessageSquare, Plus, Filter, UserPlus } from 'lucide-react';
+import { getSubjectIcon, navStudyGroups, illusStudyGroup } from './assets';
 import ThemeToggle from './ThemeToggle';
 
 export default function StudyGroupsMockup({ setView }: any) {
@@ -99,8 +100,8 @@ export default function StudyGroupsMockup({ setView }: any) {
             {yourGroups.map(group => (
               <div key={group.id} className="mockup-class-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
-                  <div className="mockup-class-icon" style={{ background: group.bgColor, color: group.iconColor, marginBottom: 0 }}>
-                    <Users size={24} />
+                  <div className="mockup-class-icon" style={{ background: 'transparent', marginBottom: 0 }}>
+                    <img src={getSubjectIcon(group.subject)} width={36} height={36} alt={group.subject} />
                   </div>
                   <div>
                     <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: '0 0 4px 0' }}>{group.name}</h3>
@@ -142,8 +143,8 @@ export default function StudyGroupsMockup({ setView }: any) {
             {discoverGroups.map(group => (
               <div key={group.id} className="mockup-class-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
-                  <div className="mockup-class-icon" style={{ background: group.bgColor, color: group.iconColor, marginBottom: 0 }}>
-                    <Users size={24} />
+                  <div className="mockup-class-icon" style={{ background: 'transparent', marginBottom: 0 }}>
+                    <img src={getSubjectIcon(group.subject)} width={36} height={36} alt={group.subject} />
                   </div>
                   <div>
                     <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: '0 0 4px 0' }}>{group.name}</h3>

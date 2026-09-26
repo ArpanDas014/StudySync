@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sun, Moon } from 'lucide-react';
+import { accThemeSun, accThemeMoon } from './assets';
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
@@ -29,8 +29,13 @@ export default function ThemeToggle() {
           className="theme-toggle-thumb"
           layout
           transition={{ type: "spring", stiffness: 700, damping: 30 }}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         >
-          {isDark ? <Moon size={14} color="#FFF" /> : <Sun size={14} color="#F59E0B" />}
+          {isDark ? (
+            <img src={accThemeMoon} width={14} height={14} alt="Dark" style={{ filter: 'brightness(10)' }} />
+          ) : (
+            <img src={accThemeSun} width={14} height={14} alt="Light" />
+          )}
         </motion.div>
       </div>
     </button>

@@ -5,6 +5,20 @@ import {
   Search, Bell, ChevronRight, ChevronDown, CheckCircle2, 
   Play, Users, FileText, Upload, Target, Monitor, Share, Clock, Menu
 } from 'lucide-react';
+import {
+  illusLearningKnowledge,
+  subjectAlgorithms,
+  subjectDataStructures,
+  subjectDbms,
+  subjectOs,
+  subjectNetworks,
+  prodStreak,
+  prodFocus,
+  navNotes,
+  navQuizzes,
+  navLiveRooms,
+  fileUpload
+} from './assets';
 import './mockup.css';
 
 export default function DashboardMockup({ setView }: any) {
@@ -114,25 +128,12 @@ export default function DashboardMockup({ setView }: any) {
             </button>
           </div>
           
-          <div className="mockup-hero-illustration">
-            {/* Minimal CSS representation of the laptop illustration */}
-            <div className="css-laptop-container">
-              <div className="css-laptop-screen">
-                <div className="css-laptop-inner">
-                  <div className="css-laptop-code-line"></div>
-                  <div className="css-laptop-code-line w-half"></div>
-                  <div className="css-laptop-code-line w-third"></div>
-                </div>
-              </div>
-              <div className="css-laptop-base"></div>
-              
-              {/* Floating Element */}
-              <div className="css-floating-card">
-                <div className="css-flow-node"></div>
-                <div className="css-flow-line"></div>
-                <div className="css-flow-node"></div>
-              </div>
-            </div>
+          <div className="mockup-hero-illustration" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <img 
+              src={illusLearningKnowledge} 
+              alt="Continue Learning" 
+              style={{ maxHeight: '180px', maxWidth: '100%', objectFit: 'contain' }} 
+            />
           </div>
         </div>
 
@@ -148,8 +149,8 @@ export default function DashboardMockup({ setView }: any) {
             <div className="mockup-subjects-flex">
               
               <div className="mockup-subj-item">
-                <div className="mockup-subj-icon" style={{ background: '#E0F2FE', color: '#0369A1' }}>
-                  <Monitor size={24} />
+                <div className="mockup-subj-icon" style={{ background: 'transparent' }}>
+                  <img src={subjectDataStructures} width={36} height={36} alt="Data Structures" />
                 </div>
                 <h4>Data<br/>Structures</h4>
                 <div className="mockup-subj-stat">72%</div>
@@ -159,8 +160,8 @@ export default function DashboardMockup({ setView }: any) {
               </div>
 
               <div className="mockup-subj-item">
-                <div className="mockup-subj-icon" style={{ background: '#F3E8FF', color: '#7E22CE' }}>
-                  <span style={{ fontWeight: 800 }}>&lt;/&gt;</span>
+                <div className="mockup-subj-icon" style={{ background: 'transparent' }}>
+                  <img src={subjectAlgorithms} width={36} height={36} alt="Algorithms" />
                 </div>
                 <h4><br/>Algorithms</h4>
                 <div className="mockup-subj-stat">64%</div>
@@ -170,8 +171,8 @@ export default function DashboardMockup({ setView }: any) {
               </div>
 
               <div className="mockup-subj-item">
-                <div className="mockup-subj-icon" style={{ background: '#DBEAFE', color: '#1D4ED8' }}>
-                  <div style={{ width: '20px', height: '20px', background: 'currentColor', borderRadius: '4px' }}></div>
+                <div className="mockup-subj-icon" style={{ background: 'transparent' }}>
+                  <img src={subjectDbms} width={36} height={36} alt="Databases" />
                 </div>
                 <h4><br/>Databases</h4>
                 <div className="mockup-subj-stat">48%</div>
@@ -181,8 +182,8 @@ export default function DashboardMockup({ setView }: any) {
               </div>
               
               <div className="mockup-subj-item">
-                <div className="mockup-subj-icon" style={{ background: '#FFEDD5', color: '#C2410C' }}>
-                  <Monitor size={24} />
+                <div className="mockup-subj-icon" style={{ background: 'transparent' }}>
+                  <img src={subjectOs} width={36} height={36} alt="Operating Systems" />
                 </div>
                 <h4>Operating<br/>Systems</h4>
                 <div className="mockup-subj-stat">35%</div>
@@ -192,8 +193,8 @@ export default function DashboardMockup({ setView }: any) {
               </div>
               
               <div className="mockup-subj-item">
-                <div className="mockup-subj-icon" style={{ background: '#E0F2FE', color: '#0369A1' }}>
-                  <Monitor size={24} />
+                <div className="mockup-subj-icon" style={{ background: 'transparent' }}>
+                  <img src={subjectNetworks} width={36} height={36} alt="Computer Networks" />
                 </div>
                 <h4>Computer<br/>Networks</h4>
                 <div className="mockup-subj-stat">28%</div>
@@ -244,14 +245,18 @@ export default function DashboardMockup({ setView }: any) {
             <h3>Study Streak</h3>
             
             <div className="mockup-streak-center">
-              <div className="mockup-fire-icon">🔥</div>
+              <div className="mockup-fire-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img src={prodStreak} width={36} height={36} alt="Streak" />
+              </div>
               <div className="mockup-streak-number">
                 <strong>12</strong>
                 <span>days</span>
               </div>
             </div>
             
-            <p className="mockup-streak-text">Keep it up! 🔥</p>
+            <p className="mockup-streak-text" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
+              Keep it up! <img src={prodStreak} width={14} height={14} alt="Streak" />
+            </p>
             
             <div className="mockup-streak-days">
               {['M','T','W','T','F','S','S'].map((day, i) => (
@@ -367,20 +372,20 @@ export default function DashboardMockup({ setView }: any) {
               <h3>Quick Actions</h3>
             </div>
             <div className="mockup-quick-grid">
-              <div className="mockup-quick-btn" style={{ color: '#10B981' }}>
-                <div className="mockup-quick-icon" style={{ background: '#D1FAE5' }}><FileText size={20} /></div>
+              <div className="mockup-quick-btn" style={{ color: '#10B981', cursor: 'pointer' }} onClick={() => setView('notes')}>
+                <div className="mockup-quick-icon" style={{ background: '#D1FAE5' }}><img src={navNotes} width={20} height={20} alt="" /></div>
                 <span>Create Note</span>
               </div>
-              <div className="mockup-quick-btn" style={{ color: '#3B82F6' }}>
-                <div className="mockup-quick-icon" style={{ background: '#DBEAFE' }}><Upload size={20} /></div>
+              <div className="mockup-quick-btn" style={{ color: '#3B82F6', cursor: 'pointer' }} onClick={() => setView('notes')}>
+                <div className="mockup-quick-icon" style={{ background: '#DBEAFE' }}><img src={fileUpload} width={20} height={20} alt="" /></div>
                 <span>Upload Resource</span>
               </div>
-              <div className="mockup-quick-btn" style={{ color: '#8B5CF6' }}>
-                <div className="mockup-quick-icon" style={{ background: '#F3E8FF' }}><Target size={20} /></div>
+              <div className="mockup-quick-btn" style={{ color: '#8B5CF6', cursor: 'pointer' }} onClick={() => setView('quiz')}>
+                <div className="mockup-quick-icon" style={{ background: '#F3E8FF' }}><img src={navQuizzes} width={20} height={20} alt="" /></div>
                 <span>Practice Problems</span>
               </div>
-              <div className="mockup-quick-btn" style={{ color: '#F97316' }}>
-                <div className="mockup-quick-icon" style={{ background: '#FFEDD5' }}><Monitor size={20} /></div>
+              <div className="mockup-quick-btn" style={{ color: '#F97316', cursor: 'pointer' }} onClick={() => setView('live-sessions')}>
+                <div className="mockup-quick-icon" style={{ background: '#FFEDD5' }}><img src={navLiveRooms} width={20} height={20} alt="" /></div>
                 <span>Join Study Room</span>
               </div>
             </div>
@@ -424,8 +429,8 @@ export default function DashboardMockup({ setView }: any) {
               </div>
             </div>
             <div style={{ marginTop: '16px', display: 'flex', justifyContent: 'center' }}>
-              <button className="mockup-btn-outline">
-                <Clock size={16} /> Start Focus Session
+              <button className="mockup-btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <img src={prodFocus} width={16} height={16} alt="" /> Start Focus Session
               </button>
             </div>
           </div>

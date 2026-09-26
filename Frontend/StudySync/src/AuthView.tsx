@@ -1,6 +1,8 @@
 import { useState, FormEvent } from 'react';
 import { supabase } from './lib/supabase';
 import { motion } from 'framer-motion';
+import { StudySyncLogo } from './components/StudySyncLogo';
+import { illusWelcome, prodCheckCircle, sparkle } from './assets';
 import './auth.css';
 
 interface AuthViewProps {
@@ -76,15 +78,9 @@ export function AuthView({ onGuestLogin }: AuthViewProps) {
           transition={{ duration: 0.8, ease: "easeOut" }}
           style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}
         >
-          {/* Dual Color Logo with Glow */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '40px' }}>
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="var(--ink)" style={{ filter: 'drop-shadow(0 0 12px rgba(74, 93, 58, 0.4))' }}>
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><path d="M12 2v20"></path>
-            </svg>
-            <h1 style={{ fontSize: '2.5rem', fontWeight: 800, margin: 0, letterSpacing: '-0.02em', textShadow: '0 0 24px rgba(74, 93, 58, 0.4), 0 0 12px rgba(210, 180, 140, 0.6)' }}>
-              <span style={{ color: 'var(--ink)' }}>Study</span>
-              <span style={{ color: 'var(--accent, #10B981)' }}>Sync</span>
-            </h1>
+          {/* Official StudySync Logo */}
+          <div style={{ marginBottom: '32px' }}>
+            <StudySyncLogo variant="stacked" height={56} />
           </div>
 
           <h2 style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '24px', lineHeight: 1.3 }}>
@@ -93,83 +89,22 @@ export function AuthView({ onGuestLogin }: AuthViewProps) {
             learning journey today!
           </h2>
 
-          <ul style={{ listStyle: 'none', padding: 0, margin: '16px 0', display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
+          <ul style={{ listStyle: 'none', padding: 0, margin: '16px 0', display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
             {['Organize your study materials', 'Plan and track your progress', 'Get AI help anytime', 'Connect and learn together'].map((item, i) => (
               <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.05rem', color: '#4A5568', fontWeight: 500 }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent, #10B981)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                <img src={prodCheckCircle} alt="" style={{ width: '20px', height: '20px' }} />
                 {item}
               </li>
             ))}
           </ul>
 
-          {/* Custom Animated Studying Woman Illustration (Line Art) */}
-          <div style={{ width: '100%', height: '260px', position: 'relative', marginTop: '40px' }}>
-            <svg width="100%" height="100%" viewBox="0 0 400 260" preserveAspectRatio="xMidYMax meet">
-              
-              {/* Floor Shadow */}
-              <ellipse cx="200" cy="240" rx="160" ry="12" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="2" strokeDasharray="10 6" />
-              
-              {/* Desk */}
-              <line x1="80" y1="210" x2="320" y2="210" stroke="var(--ink)" strokeWidth="4" strokeLinecap="round" />
-              <line x1="110" y1="210" x2="100" y2="240" stroke="var(--ink)" strokeWidth="4" strokeLinecap="round" />
-              <line x1="290" y1="210" x2="300" y2="240" stroke="var(--ink)" strokeWidth="4" strokeLinecap="round" />
-              
-              {/* Laptop */}
-              <path d="M 130 210 L 190 210 L 180 150 L 140 150 Z" fill="none" stroke="var(--ink)" strokeWidth="3" strokeLinejoin="round" />
-              <line x1="120" y1="210" x2="200" y2="210" stroke="var(--ink)" strokeWidth="5" strokeLinecap="round" />
-              
-              <motion.rect x="145" y="160" width="30" height="25" fill="none" stroke="var(--accent, #10B981)" strokeWidth="2" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 2 }} />
-
-              {/* Plant */}
-              <path d="M 260 210 L 290 210 L 285 160 L 265 160 Z" fill="none" stroke="var(--ink)" strokeWidth="3" strokeLinejoin="round" />
-              <path d="M 275 160 Q 240 100 270 70 Q 295 120 275 160" fill="none" stroke="var(--ink)" strokeWidth="2" />
-              <path d="M 275 160 Q 310 110 320 80 Q 295 130 275 160" fill="none" stroke="var(--ink)" strokeWidth="2" />
-              <path d="M 275 160 L 275 100" fill="none" stroke="var(--ink)" strokeWidth="2" />
-
-              {/* Coffee */}
-              <path d="M 230 210 L 250 210 L 250 170 L 230 170 Z" fill="none" stroke="var(--ink)" strokeWidth="3" strokeLinejoin="round" />
-              <path d="M 250 180 Q 265 180 265 190 Q 265 200 250 200" fill="none" stroke="var(--ink)" strokeWidth="3" strokeLinecap="round" />
-              <motion.path d="M 235 155 Q 240 140 235 125" fill="none" stroke="var(--accent, #10B981)" strokeWidth="2" strokeLinecap="round" animate={{ y: [0, -10, 0], opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 3 }} />
-              <motion.path d="M 245 150 Q 250 135 245 120" fill="none" stroke="var(--accent, #10B981)" strokeWidth="2" strokeLinecap="round" animate={{ y: [0, -10, 0], opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 3, delay: 1 }} />
-
-              {/* Studying Woman (Line Art Doodle) */}
-              <motion.g animate={{ y: [0, 3, 0] }} transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}>
-                
-                {/* Body */}
-                <path d="M 240 230 Q 220 120 180 120 Q 150 120 150 160 Q 155 170 170 165" fill="none" stroke="var(--ink)" strokeWidth="3" strokeLinecap="round" />
-                <path d="M 180 120 Q 160 140 160 160" fill="none" stroke="var(--ink)" strokeWidth="3" strokeLinecap="round" />
-                
-                {/* Head */}
-                <circle cx="205" cy="100" r="22" fill="none" stroke="var(--ink)" strokeWidth="3" />
-                <path d="M 190 85 Q 210 70 220 85" fill="none" stroke="var(--ink)" strokeWidth="2" strokeLinecap="round" />
-                
-                {/* Hair Bun */}
-                <circle cx="230" cy="85" r="10" fill="none" stroke="var(--ink)" strokeWidth="3" />
-                
-                {/* Glasses */}
-                <circle cx="195" cy="100" r="6" fill="none" stroke="var(--accent, #10B981)" strokeWidth="2" />
-                <circle cx="180" cy="100" r="6" fill="none" stroke="var(--accent, #10B981)" strokeWidth="2" />
-                <line x1="186" y1="100" x2="189" y2="100" stroke="var(--accent, #10B981)" strokeWidth="2" />
-                
-                {/* Arm Typing */}
-                <motion.path 
-                  d="M 180 140 Q 160 170 175 200" 
-                  fill="none" 
-                  stroke="var(--ink)" 
-                  strokeWidth="3" 
-                  strokeLinecap="round" 
-                  animate={{ d: ["M 180 140 Q 160 170 175 200", "M 180 140 Q 150 170 180 195", "M 180 140 Q 160 170 175 200"] }} 
-                  transition={{ repeat: Infinity, duration: 0.6 }} 
-                />
-              </motion.g>
-              
-              {/* Ideas / Sparkles */}
-              <motion.g animate={{ scale: [0.9, 1.1, 0.9], opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2 }}>
-                <path d="M 270 50 L 270 60 M 265 55 L 275 55" stroke="var(--accent, #10B981)" strokeWidth="2" strokeLinecap="round" />
-                <path d="M 140 70 L 140 80 M 135 75 L 145 75" stroke="var(--accent, #10B981)" strokeWidth="2" strokeLinecap="round" />
-                <circle cx="120" cy="110" r="4" fill="none" stroke="var(--accent, #10B981)" strokeWidth="2" />
-              </motion.g>
-            </svg>
+          {/* Welcome Illustration */}
+          <div style={{ width: '100%', maxWidth: '360px', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '32px' }}>
+            <img 
+              src={illusWelcome} 
+              alt="Welcome to StudySync" 
+              style={{ maxHeight: '230px', maxWidth: '100%', objectFit: 'contain' }} 
+            />
           </div>
         </motion.div>
       </div>
@@ -177,12 +112,8 @@ export function AuthView({ onGuestLogin }: AuthViewProps) {
       <div className="auth-card auth-form-side">
         <div className="form-wrapper">
           
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '32px' }}>
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--ink)"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><path d="M12 2v20"></path></svg>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: 800, margin: 0 }}>
-              <span style={{ color: 'var(--ink)' }}>Study</span>
-              <span style={{ color: 'var(--accent, #10B981)' }}>Sync</span>
-            </h1>
+          <div style={{ marginBottom: '28px' }}>
+            <StudySyncLogo variant="compact" height={32} />
           </div>
 
           <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--ink)', marginBottom: '8px' }}>
@@ -246,8 +177,10 @@ export function AuthView({ onGuestLogin }: AuthViewProps) {
                 type="button"
                 className="demo-access-btn"
                 onClick={onGuestLogin}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
               >
-                <span>🚀</span> Explore as Demo Student (Instant Access)
+                <img src={sparkle} alt="" style={{ width: '18px', height: '18px' }} />
+                Explore as Demo Student (Instant Access)
               </button>
             )}
           </form>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Radio, Video, Users, Clock, Calendar, Play, BookmarkPlus, ArrowRight, Plus, X } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { motion, AnimatePresence } from 'framer-motion';
+import { illusLiveRoom, illusNoStudySessions } from './assets';
 
 // Initialize Supabase Client
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
@@ -151,14 +152,15 @@ export default function LiveSessionsMockup({ setView, setActiveSessionId }: any)
                     Join Live Session
                   </button>
                 </div>
-                <div style={{ width: '300px', height: '200px', background: 'var(--theme-surface)', borderRadius: '16px', border: '1px solid var(--theme-border-strong)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}>
-                  <Video size={48} color="var(--theme-text-secondary)" opacity={0.5} />
+                <div style={{ width: '300px', height: '200px', background: 'var(--theme-surface)', borderRadius: '16px', border: '1px solid var(--theme-border-strong)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
+                  <img src={illusLiveRoom} alt="Live Session" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
               </div>
             ))
           ) : (
-            <div className="soft-card" style={{ textAlign: 'center', padding: '48px', color: 'var(--theme-text-secondary)' }}>
-              No sessions are live right now.
+            <div className="soft-card" style={{ textAlign: 'center', padding: '36px', color: 'var(--theme-text-secondary)' }}>
+              <img src={illusNoStudySessions} alt="No active sessions" style={{ maxWidth: '280px', width: '100%', maxHeight: '180px', objectFit: 'contain', margin: '0 auto 16px', display: 'block', borderRadius: '12px' }} />
+              <p style={{ margin: 0, fontWeight: 500 }}>No sessions are live right now. Schedule or host one below!</p>
             </div>
           )}
         </div>

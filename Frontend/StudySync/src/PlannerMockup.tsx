@@ -5,6 +5,14 @@ import {
   Plus, Check, Play, BookOpen, DivideSquare as MathIcon, Activity, Target, 
   Users, Settings, Coffee, Clock, Music, Lightbulb, Menu, CheckCircle2, ChevronLeft, ChevronRight, MoreVertical, Code
 } from 'lucide-react';
+import { 
+  illusFocus, 
+  illusPlanning, 
+  subjectMath, 
+  navStudyGroups, 
+  prodFocus, 
+  prodCalendar 
+} from './assets';
 import './planner-mockup.css';
 
 export default function PlannerMockup({ setView }: any) {
@@ -167,11 +175,8 @@ export default function PlannerMockup({ setView }: any) {
             </div>
             <div className="focus-time">25:00</div>
             <button className="start-focus-btn"><Play size={14} fill="currentColor" /> Start Focus</button>
-            <div className="focus-illustration">
-              <div className="ill-desk">
-                <div className="ill-laptop"><Code size={12} color="#FFF" /></div>
-                <div className="ill-lamp"></div>
-              </div>
+            <div className="focus-illustration" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img src={illusFocus} alt="Focus" style={{ maxHeight: '72px', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
             
             <div className="focus-mode-selector">
@@ -236,7 +241,9 @@ export default function PlannerMockup({ setView }: any) {
                   <div className="task-time">11:00 AM</div>
                   <div className="task-dot check"><Check size={12} color="white" /></div>
                   <div className="task-card">
-                    <div className="t-icon-box yellow"><strong>√x</strong></div>
+                    <div className="t-icon-box yellow" style={{ background: 'transparent', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <img src={subjectMath} width={36} height={36} alt="Math" />
+                    </div>
                     <div className="t-info">
                       <h4>Math Problem Set 4 <span className="badge yellow">Medium Priority</span></h4>
                       <p><span className="dot yellow"></span> Mathematics • 45 min</p>
@@ -273,7 +280,9 @@ export default function PlannerMockup({ setView }: any) {
                   <div className="task-time">03:00 PM</div>
                   <div className="task-dot ring"></div>
                   <div className="task-card">
-                    <div className="t-icon-box blue"><strong>fx</strong></div>
+                    <div className="t-icon-box blue" style={{ background: 'transparent', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <img src={subjectMath} width={36} height={36} alt="Calculus" />
+                    </div>
                     <div className="t-info">
                       <h4>Review Limits & Continuity <span className="badge blue-light">Calculus</span></h4>
                       <p><span className="dot blue"></span> Calculus • 60 min</p>
@@ -294,7 +303,9 @@ export default function PlannerMockup({ setView }: any) {
                   <div className="task-time">05:00 PM</div>
                   <div className="task-dot ring"></div>
                   <div className="task-card">
-                    <div className="t-icon-box green"><Target size={20} /></div>
+                    <div className="t-icon-box green" style={{ background: 'transparent', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <img src={prodFocus} width={28} height={28} alt="Focus" />
+                    </div>
                     <div className="t-info">
                       <h4>Focus Session <span className="badge purple">Focus</span></h4>
                       <p><span className="dot blue"></span> Data Structures • 25 min</p>
@@ -310,7 +321,9 @@ export default function PlannerMockup({ setView }: any) {
                   <div className="task-time">06:00 PM</div>
                   <div className="task-dot ring"></div>
                   <div className="task-card">
-                    <div className="t-icon-box blue-light"><Users size={20} /></div>
+                    <div className="t-icon-box blue-light" style={{ background: 'transparent', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <img src={navStudyGroups} width={28} height={28} alt="Group" />
+                    </div>
                     <div className="t-info">
                       <h4>DSA Group Discussion <span className="badge green">Group</span></h4>
                       <p><span className="dot blue"></span> Study Group • 60 min</p>

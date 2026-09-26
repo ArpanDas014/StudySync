@@ -1,6 +1,8 @@
 import React from 'react';
-import { Search, Bell, ChevronDown, Menu, Maximize } from 'lucide-react';
+import { Search, ChevronDown, Menu } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import StudySyncLogo from './components/StudySyncLogo';
+import { commBell, accFullscreen } from './assets';
 
 export default function GlobalHeader({ sidebarState, setSidebarState, toggleFullscreen, isSidebarOpen, setIsSidebarOpen }: any) {
   const toggleSidebar = () => {
@@ -28,17 +30,12 @@ export default function GlobalHeader({ sidebarState, setSidebarState, toggleFull
       WebkitBackdropFilter: 'blur(16px)'
     }}>
       {/* LEFT: Logo + Hamburger */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '20px', width: '280px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', width: '280px' }}>
         <button onClick={toggleSidebar} style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: '8px', color: 'var(--theme-text-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Menu size={22} />
         </button>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }}>
-          <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M25 8H15L10 16L15 24H25L30 16L25 8Z" fill="#10B981" fillOpacity="0.2"/>
-            <path d="M12 20C12 20 18 10 24 10C30 10 32 16 32 16L28 20" stroke="#10B981" strokeWidth="3" strokeLinecap="round"/>
-            <path d="M28 20C28 20 22 30 16 30C10 30 8 24 8 24L12 20" stroke="#10B981" strokeWidth="3" strokeLinecap="round"/>
-          </svg>
-          <span style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--theme-text-primary)' }}>Study<span style={{ color: '#10B981' }}>Sync</span></span>
+        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+          <StudySyncLogo variant="compact" height={28} />
         </div>
       </div>
 
@@ -52,12 +49,12 @@ export default function GlobalHeader({ sidebarState, setSidebarState, toggleFull
 
       {/* RIGHT: Actions */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px', width: '280px', justifyContent: 'flex-end' }}>
-        <button onClick={toggleFullscreen} style={{ background: 'transparent', border: 'none', color: 'var(--theme-text-secondary)', cursor: 'pointer', padding: '8px' }} title="Focus Mode">
-          <Maximize size={20} />
+        <button onClick={toggleFullscreen} style={{ background: 'transparent', border: 'none', color: 'var(--theme-text-secondary)', cursor: 'pointer', padding: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} title="Focus Mode">
+          <img src={accFullscreen} width={20} height={20} alt="Fullscreen" />
         </button>
         <ThemeToggle />
-        <button style={{ background: 'transparent', border: 'none', color: 'var(--theme-text-secondary)', cursor: 'pointer', position: 'relative' }}>
-          <Bell size={20} />
+        <button style={{ background: 'transparent', border: 'none', color: 'var(--theme-text-secondary)', cursor: 'pointer', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img src={commBell} width={20} height={20} alt="Notifications" />
           <div style={{ position: 'absolute', top: '-2px', right: '-2px', width: '8px', height: '8px', background: '#EF4444', borderRadius: '50%' }}></div>
         </button>
         <button style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'transparent', border: 'none', cursor: 'pointer' }}>
@@ -68,3 +65,4 @@ export default function GlobalHeader({ sidebarState, setSidebarState, toggleFull
     </div>
   );
 }
+
